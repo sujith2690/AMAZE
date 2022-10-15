@@ -22,8 +22,7 @@ module.exports = {
     })
   },
   verifyPayment:(details)=>{
-    console.log(instance.key_secret,'--------------++++++++++');
-    console.log(details,'this is details in verify')
+
     return new Promise(async(resolve,reject)=>{
       try {
         const crypto = require('crypto')
