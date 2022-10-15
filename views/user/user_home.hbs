@@ -1,0 +1,114 @@
+<main id="main" class="mt-5">
+    <div id="carouselExampleIndicators" class="carousel slide" style="height: 25%;" data-ride="carousel">
+        <ol class="carousel-indicators">
+            {{#each bannerDetails}}
+            <li data-target="#carouselExampleIndicators" data-slide-to="{{@index}}" class="active"></li>
+            {{/each}}
+        </ol>
+        <div class="carousel-inner">
+            {{#each bannerDetails}}
+            <div class="carousel-item {{#if @first}} active {{/if}}">
+                <div style="height: 25em;object-fit: cover;">
+                    <img class="d-block h-100 w-100" src="/banner-images/{{this.image.[0]}}" alt="First slide">
+                </div>
+                <div class="carousel-caption d-none d-md-block" style="color: red;">
+                    <h3>{{this.bannerheading}}</h3>
+                    <h5>{{this.bannersubheading}}</h5>
+                    <p>{{this.description}}</p>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only"></span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only"></span>
+        </a>
+    </div>
+
+    <!-- ======= Clients Section ======= -->
+    <section id="clients" class="clients section-bg">
+        <div class="container">
+
+            <div class="row" data-aos="zoom-in">
+                <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                    <img src="/brand-images/Allen-Solly-Logo-PNG-HD.png" class="img-fluid" alt="">
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                    <img src="/brand-images/143-1434404_levis-logo.png" class="img-fluid" alt="">
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                    <img src="/brand-images/198-1980072_us-polo-assn-u-s-polo-assn.png" class="img-fluid" alt="">
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                    <img src="/brand-images/parkpreview.png" class="img-fluid" alt="">
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                    <img src="/brand-images/tommy.png" class="img-fluid" alt="">
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                    <img src="/brand-images/ucb1.png" class="img-fluid" alt="">
+                </div>
+            </div>
+        </div>
+    </section><!-- End Cliens Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="new" class="services section-bg">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>New Arrivals..</h2>
+
+            </div>
+
+            <div class="row">
+                {{#each latest}}
+                <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="icon-box ">
+
+                        <div class="portfolio-img"><a href="/singleproduct/{{this._id}}"><img
+                                    src="/productimages/{{this.image.[0]}}" class="img-fluid" alt="">
+                            </a></div>
+                        <div class="text-center">
+                            <h4><a >{{this.productname}}</a></h4>
+                            <p><b>{{this.brand}}</b></p><br>
+                            <h6 class="mb-0"> <del>₹{{this.mrp}}</del> <mark style="color: red;">{{this.percentage}}%
+                                    off</mark></h6>
+                        </div>
+
+                    </div>
+                </div>
+                {{/each}}
+
+
+            </div>
+
+        </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Cta Section ======= -->
+    <section id="OfferZone" class="cta">
+        <div class="container" data-aos="zoom-in">
+
+            <div class="row">
+                <div class="col-lg-9 text-center text-lg-start">
+                    <h3>Hurry Now</h3>
+                    <p> Its Now or Never</p>
+                </div>
+                <div class="col-lg-3 cta-btn-container text-center">
+                    <a class="cta-btn align-middle" href="/shop">Shope Now</a>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End Cta Section -->
+
+    
+
+</main><!-- End #main -->

@@ -1,0 +1,63 @@
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top" style="background-color: #013741;">
+    
+    <div class="container d-flex align-items-center">
+        <h1 class="logo me-auto"><a href="/">AmaZe</a></h1>
+        
+        <nav id="navbar" class="navbar ">
+            <ul>
+                <li><a class="nav-link scrollto active" href="/">Home</a></li>
+                
+                <li><a class="nav-link scrollto" href="/shop">Shop</a></li>
+                <li><a class="nav-link scrollto" href="#new">New</a></li>
+
+                <li><a class="nav-link scrollto" href="#OfferZone">OfferZone</a></li>
+               
+                
+                {{!-- ............................................................................................ --}}
+
+                {{#if loggedin}}
+              
+                <li id="cart"> <a class="nav-link" href="/cart" class="nav-link">
+                        <i class="bi bi-cart-check" style="font-size: 20px;"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill "
+                            >{{count.cartcount}}</span>
+                    </a>
+                </li>
+                <li id="wish"><a class="nav-link" href="/wishlist">
+                        <ion-icon name="heart-outline" style="font-size: 20px;"></ion-icon>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill "
+                            >{{count.wishcount}}</span>
+                    </a>
+                </li>
+
+               
+                
+                <li class="dropdown"><a href="#"><span>Hello, {{userDetails.name}}</span> <i
+                            class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="/profile">My Profile</a></li>
+                        <li><a href="/orders">Orders</a></li>
+                        <li><a href="#">Coupons</a></li>
+                        <li><a href="/logout">Log Out</a></li>
+
+                    </ul>
+                </li>
+                {{else}}
+
+                <li> <a href="/login" class="nav-link">
+                        <i class="bi bi-cart-x" style="font-size: 20px;"></i></a>
+                </li>
+                <li><a href="/login">
+                        <ion-icon name="heart-outline" style="font-size: 20px;"></ion-icon>
+                </li></a>
+
+                <li><a class="getstarted scrollto" style="color: #fff;" href="/login">Login</a></li>
+                {{/if}}
+               
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+
+    </div>
+</header><!-- End Header -->

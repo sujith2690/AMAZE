@@ -1,0 +1,48 @@
+
+
+
+
+<section class="vh-100 bg-image"
+    style="background-image: url('/loginpageimage/cool-guy-good-mood-posing-blue-background-jumping.jpg'); background-size: cover;backgrou	nd-repeat: no-repeat;height: 100vh;">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-end align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card mt-4" style="border-radius: 15px; background: transparent;">
+                        <div class="card-body" style="background: transparent;">
+
+
+                            <form action="/otpverify" method="post">
+                                <h3 class="fw-normal mb-3 pb-3 text-white" style="letter-spacing: 1px; text-align:center">Enter OTP
+                                </h3>
+
+
+                                <div class="form-row" style="margin-bottom: 20px;">
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="OTP Number" name="otp"
+                                            required>
+                                        {{#if otp}}
+                                        <p style="color: red;">Wrong OTP</p>
+                                        {{/if}}
+                                    </div>
+                                </div>
+
+
+                        </div>
+                        <div class="pt-1 mb-4">
+                            <button type="submit" class="btn btn-outline-warning btn-lg btn-block">Verify </button>
+                        </div>
+
+
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</section>

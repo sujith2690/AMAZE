@@ -1,0 +1,239 @@
+{{#if emptyWishlist}}
+{{!-- <section class="vh-100 bg-image"
+  style="background-image: url('/images/heart.jpg'); background-size: cover;backgrou	nd-repeat: no-repeat;height: 100vh;">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+
+  </div>
+</section> --}}
+
+<section class="vh-100 bg-image"
+  style="background-image: url('/images/heart.jpg'); background-size: cover;backgrou	nd-repeat: no-repeat;height: 100vh;">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex  align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <h1> Your Wishlist is Empty</h1>
+          <a href="/shop">Shop More</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+{{else}}
+
+
+
+<style>
+  .title {
+    margin-bottom: 5vh;
+  }
+
+  .card {
+
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 1rem;
+    border: transparent;
+  }
+
+  @media(max-width:767px) {
+    .card {
+      margin: 3vh auto;
+    }
+  }
+
+  .cart {
+    background-color: #fff;
+    padding: 4vh 5vh;
+    border-bottom-left-radius: 1rem;
+    border-top-left-radius: 1rem;
+  }
+
+  @media(max-width:767px) {
+    .cart {
+      padding: 4vh;
+      border-bottom-left-radius: unset;
+      border-top-right-radius: 1rem;
+    }
+  }
+
+  .summary {
+    background-color: #ddd;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    padding: 4vh;
+    color: rgb(65, 65, 65);
+  }
+
+  @media(max-width:767px) {
+    .summary {
+      border-top-right-radius: unset;
+      border-bottom-left-radius: 1rem;
+    }
+  }
+
+  .summary .col-2 {
+    padding: 0;
+  }
+
+  .summary .col-10 {
+    padding: 0;
+  }
+
+  .row {
+    margin: 0;
+  }
+
+  .title b {
+    font-size: 1.5rem;
+  }
+
+  .main {
+    margin: 0;
+    padding: 2vh 0;
+    width: 100%;
+  }
+
+  .col-2,
+  .col {
+    padding: 0 1vh;
+  }
+
+  a {
+    padding: 0 1vh;
+  }
+
+  .close {
+    margin-left: auto;
+    font-size: 0.7rem;
+  }
+
+  img {
+    width: 5.5rem;
+  }
+
+  .back-to-shop {
+    margin-top: 4.5rem;
+  }
+
+  h5 {
+    margin-top: 4vh;
+  }
+
+  hr {
+    margin-top: 1.25rem;
+  }
+
+  form {
+    padding: 2vh 0;
+  }
+
+  select {
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1.5vh 1vh;
+    margin-bottom: 4vh;
+    outline: none;
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+  }
+
+  input {
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1vh;
+    margin-bottom: 4vh;
+    outline: none;
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+  }
+
+  input:focus::-webkit-input-placeholder {
+    color: transparent;
+  }
+
+
+  a {
+    color: black;
+  }
+
+  a:hover {
+    color: black;
+    text-decoration: none;
+  }
+
+  #code {
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253), rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: center;
+  }
+</style>
+
+<section id="portfolio" class="portfolio">
+  <div class="container" >
+
+    <div class="section-title">
+      <h2>My Wishlist...</h2>
+    </div>
+
+    <div class="card">
+
+      <div class="cart">
+
+        {{#each wish}}
+
+        <div class="row border-top border-bottom">
+
+          <div class="row main align-items-center">
+            <div class="zoom col">
+              <img class="img-fluid" src="/productimages/{{this.productId.image.[0]}}">
+            </div>
+            <div class="col">
+              <div class="row text-muted" style="text-transform: capitalize;">{{this.productId.brand}}
+              </div>
+            </div>
+
+            {{!-- ..............................................inc and dec........................................ --}}
+
+
+            <div class="col">
+              {{this.productId.productname}}
+
+            </div>
+            <div class="col" style="text-decoration: line-through;">₹ {{this.productId.mrp}}
+
+            </div>
+
+
+            {{!-- ............................................................................................... --}}
+
+            <div class="col">₹ {{this.productId.offerprice}}</div>
+
+            <div class="col">
+              <a class="btn btn" style="color: red;" href="/wishlist_remove-product/{{this.productId._id}}"
+                onclick=" remove(event, '{{this.productId._id}}')">
+                <ion-icon name="trash-outline"></ion-icon>
+              </a>
+
+              <a class="btn btn" style="color: green;" onclick="addtoCart('{{this.productId._id}}')" href="#"><i class="h5 bi bi-cart-plus "></i></a>
+            </div>
+          </div>
+
+        </div>
+        {{/each}}
+      </div>
+
+    </div>
+    {{/if}}
+  </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+

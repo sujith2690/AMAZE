@@ -1,0 +1,125 @@
+<section class="vh-100 bg-image"
+  style="background-image: url('/loginpageimage/young-handsome.jpg'); background-size: cover;backgrou	nd-repeat: no-repeat;height: 100vh;">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-end align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;background: transparent;">
+            <div class="card-body p-3">
+
+              <form action="/otp" method="post" id="signupForm">
+              <a href="/"> <h1 class="logo text-white text-align: center;"
+                  style="text-decoration: solid; letter-spacing: 1px; text-align: center;">AMAZE</h1></a>
+                <div class="form-row" style="margin-bottom: 20px;">
+                  <div class="col">
+                    <input type="text" style="text-transform: capitalize;" class="form-control" placeholder="First name"
+                      name="name">
+                  </div>
+                  <div class="col">
+                    <input type="text" style="text-transform: capitalize;" class="form-control" placeholder="Last name"
+                      name="lastname">
+                  </div>
+                </div>
+                <div class="form-row" style="margin-bottom: 20px;">
+                  <div class="col">
+                    <input type="text" style="text-transform:lowercase;" class="form-control" placeholder="Email"
+                      name="email">
+                    {{#if exist}}
+                    <p style="color: red; ">user already exist</p>
+                    {{/if}}
+                  </div>
+                </div>
+                <div class="form-row" style="margin-bottom: 20px;">
+                  <div class="col">
+                    <input pattern=".{10,10}" type="text" class="form-control" placeholder="Mobile Number" name="mobile"
+                      required title="plese enter 10 number">
+                  </div>
+                </div>
+                <div class="form-row" style="margin-bottom: 20px;">
+                  <div class="col">
+                    <input type="password" class="form-control" placeholder="Password" name="password" id="password">
+                    <input type="tex" class="form-control" id="status" name="status" value="false" hidden
+                      style="background-color: aqua;" placeholder="">
+                  </div>
+                  <div class="col">
+                    <input type="password" class="form-control" name='confirm_password' placeholder="Verify Password">
+                  </div>
+
+                </div>
+                <div class="pt-1 mb-4">
+                  <button type="submit" class="btn btn-outline-warning btn-lg btn-block">Create Account</button>
+                </div>
+
+
+                <p class="text-white text-center mt-5 mb-0">Have already an account? <a href="/login"
+                    class="fw-bold text-body"><u>Login here</u></a></p>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  $().ready(function () {
+
+    $("#signupForm").validate({
+      // in 'rules' user have to specify all the constraints for respective fields
+      rules: {
+
+        name: {
+          required: true,
+          minlength: 2 //for length of lastname
+        },
+        password: {
+          required: true,
+          minlength: 3
+        },
+        confirm_password: {
+          required: true,
+          minlength: 3,
+          equalTo: "#password" //for checking both passwords are same or not
+        },
+        email: {
+          required: true,
+          email: true
+        },
+        mobile: {
+          required: true,
+          number: true,
+          minlength: 10,
+          maxlength: 10,
+
+        }
+
+      },
+      // in 'messages' user have to specify message as per rules
+      messages: {
+
+        username: {
+          required: " Please enter a username",
+          minlength: " Your username must consist of at least 2 characters"
+        },
+        password: {
+          required: " Please enter a password",
+          minlength: " Your password must be consist of at least 3 characters"
+        },
+        confirm_password: {
+          required: " Please enter a password",
+          minlength: " Your password must be consist of at least 3 characters",
+          equalTo: " Please enter the same password as above"
+        },
+        mobile: {
+          required: " Please enter a phone number",
+          minlength: " phone number must be of 10 numbers",
+          maxlength: " phone number must be of 10 numbers",
+        }
+
+      }
+    });
+  });
+
+</script>

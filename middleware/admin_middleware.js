@@ -1,0 +1,9 @@
+module.exports={
+    admin_login:(req,res,next)=>{
+        if(req.session.admin_login){
+            res.redirect('/admin/admin_home')
+        }else{
+            next()
+        }
+    }
+}

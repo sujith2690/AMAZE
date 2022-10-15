@@ -1,0 +1,100 @@
+<!------ Include the above in your HEAD tag ---------->
+<div class="container">
+    <div>
+        <form class="form-horizontal" action="/admin/updateproduct/{{productdata.data._id}}" method="post" enctype="multipart/form-data">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend></legend>
+                <br>
+                <br>
+                <br>
+
+                {{!-- {{productdetails}} --}}
+
+                <div class="">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="product_name"></label>
+                        <div class="col-md-4">
+                            <input id="product_name" placeholder="BRAND NAME" name="brand" style="text-transform: capitalize;"
+                                class="form-control input-md" required="" type="text" value="{{productdata.data.brand}}">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="product_name"></label>
+                        <div class="col-md-4">
+                            <input id="product_name" placeholder="PRODUCT NAME" name="productname" style="text-transform: capitalize;"
+                                class="form-control input-md" required="" type="text" value="{{productdata.data.productname}}">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="product_name_fr"></label>
+                        <div class="col-md-4">
+                            <input id="product_name_fr" placeholder="PRICE" name="price" class="form-control input-md"
+                                required="" type="number" value="{{productdata.data.mrp}}">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="product_name"></label>
+                        <div class="col-md-4">
+                            <input id="product_name" placeholder="DISCOUNT PRICE" name="offerprice"
+                                class="form-control input-md" required="" type="number" value="{{productdata.data.offerprice}}">
+
+                        </div>
+                        <div class="btn-group ">
+
+                            <div class="col-md-6 mb-4">
+                                <label for="">Category</label>
+                                <select class="select" name="categoryname">
+                                    {{#each category}}
+                                    <option value="{{this._id}}">{{this.categoryname}}</option>
+                                    {{/each}}
+
+                                </select>
+
+                            </div>
+                            {{!-- <div class="dropdown-menu">{{#each category}}
+                                <a class="dropdown-item" href="#">{{this.categoryname}}</a>
+                                <a class="dropdown-item" href="#">{{this.categoryname}}</a>
+                                {{/each}}
+
+                            </div> --}}
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Textarea -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="product_name_fr"></label>
+                    <div class="col-md-4">
+                        <input id="product_name_fr" name="stock" placeholder="STOCK" class="form-control input-md"
+                            required="" type="text" value="{{productdata.data.stock}}">
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="filebutton">Select image</label>
+                    <div class="col-md-4">
+                        <input id="filebutton" multiple name="image" class="input-file" type="file"value="{{productdata.data.image}}">
+                    </div>
+                </div>
+
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="singlebutton"></label>
+                    <div class="col-md-4">
+                        <button type="submit" id="singlebutton" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+<section class="vh-100 bg-image"
+    style="background-image: url('/images/flat.jpg'); background-size: cover;backgrou	nd-repeat: no-repeat;height: 100vh;">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-first align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body p-3">
+
+                            <form action="/admin/add_user" method="post">
+
+                                <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px; text-align:center">Admin Add
+                                    User</h5>
+
+                                <div class="form-row" style="margin-bottom: 20px;">
+                                    <div class="col">
+                                        <input type="text" style="text-transform: capitalize;" class="form-control" placeholder="First name" name="name"
+                                            required>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text"style="text-transform: capitalize;" class="form-control" placeholder="Last name" name="lastname"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-row" style="margin-bottom: 20px;">
+                                    <div class="col">
+                                        <input type="text"style="text-transform:lowercase;" class="form-control" placeholder="Email" name="email"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-row" style="margin-bottom: 20px;">
+                                    <div class="col">
+                                        <input pattern=".{10,10}" type="text" class="form-control"
+                                            placeholder="Mobile Number" name="mobile" required
+                                            title="plese enter 10 number">
+                                    </div>
+                                </div>
+                                <div class="form-row" style="margin-bottom: 20px;">
+                                    <div class="col">
+                                        <input type="password" class="form-control" placeholder="Password" name="password"
+                                            required>
+                                    </div>
+                                    <div class="col">
+                                        <input type="password" class="form-control" placeholder="Verify Password" required>
+                                        <input type="tex" class="form-control" id="status" name="status" value="false"
+                                            hidden style="background-color: aqua;" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="pt-1 mb-4">
+                                    <button type="submit" class="btn btn-dark btn-lg btn-block">Register</button>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

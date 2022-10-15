@@ -1,0 +1,101 @@
+<!------ Include the above in your HEAD tag ---------->
+<div class="container">
+    <div>
+        <form class="form-horizontal" action="/admin/addproducts" method="post" enctype="multipart/form-data">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend></legend>
+                <br>
+                <br>
+                <br>
+
+                {{!-- {{productdetails}} --}}
+
+                <div class="">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="brand_name"></label>
+                        <div class="col-md-4">
+                            <input id="brand_name" placeholder="BRAND NAME" name="brand" class="form-control input-md"
+                                required="" type="text" style="text-transform: capitalize;">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="product_name"></label>
+                        <div class="col-md-4">
+                            <input id="product_name" placeholder="PRODUCT NAME" name="productname"
+                                class="form-control input-md" required="" type="text"
+                                style="text-transform: capitalize;">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="product_name"></label>
+                        <div class="col-md-4">
+                            <input id="product_name" placeholder="DISCOUNT PRICE" name="offerprice"
+                                class="form-control input-md" required="" type="number">
+
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="product_name_fr"></label>
+                        <div class="col-md-4">
+                            <input id="product_name_fr" placeholder="MRP" name="mrp" class="form-control input-md"
+                                required="" type="number">
+
+                        </div>
+
+                        <div class="btn-group ">
+
+                            <div class="col-md-6 mb-4">
+                                <label for="">Category</label>
+                                <select class="select" name="categoryname">
+                                    {{#each category}}
+                                    <option value="{{this._id}}">{{this.categoryname}}</option>
+                                    {{/each}}
+
+                                </select>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+                <!-- Textarea -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="product_name_fr"></label>
+                    <div class="col-md-4">
+                        <input id="product_name_fr" name="stock" placeholder="STOCK" class="form-control input-md"
+                            required="" type="number">
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="filebutton">Product Images</label>
+                    <div class="col-md-4">
+                        <input id="filebutton" multiple name="image" class="input-file" type="file">
+                    </div>
+                </div>
+
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="singlebutton"></label>
+                    <div class="col-md-4">
+                        <button id="singlebutton" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,193 @@
+<h1>Coupon</h1>
+<!-- Navbar -->
+
+
+<div class="container">
+
+
+  {{!-- <button class="btn btn-success" data-toggle="modal" data-target="#coupen">Add Coupen</button> --}}
+
+
+
+  <!-- Button trigger modal -->
+  <a type="button" class="btn btn-outline-primary mb-2" data-bs-target="#exampleModalss" data-bs-toggle="modal">
+    Add Coupen
+  </a>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalss" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Coupen</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/admin/addcoupen" method="post">
+            <!-- Name input -->
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Coupon name" name="Couponname">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Coupon code" name="Couponcode">
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col">
+                <input type="number" class="form-control" placeholder="Discount price" name="Discountprice">
+              </div>
+              <div class="col">
+                <input type="number" class="form-control" placeholder="Discount price Limit" name="Discountpricelimit">
+              </div>
+
+            </div>
+            <div class="row mt-2">
+              <div class="col">
+                <input type="number" class="form-control" placeholder="Coupon Limit" name="Couponlimit">
+              </div>
+              <div class="col">
+                <input type="text" disabled class="form-control" placeholder="Date" name="date">
+              </div>
+
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Add</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  {{!-- .......................................... --}}
+
+
+  {{!-- ................................................ --}}
+
+
+
+
+
+
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <i class="fas fa-table me-1"></i>
+      Coupon Management Table
+    </div>
+    <div class="card-body">
+      <table id="datatablesSimple">
+        <thead>
+
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Coupon Name</th>
+            <th scope="col">Coupon Code</th>
+            <th scope="col">Discount Price</th>
+            <th scope="col">Discount Price Limit</th>
+            <th scope="col">Coupon Limit</th>
+            <th scope="col">Date</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Coupon Name</th>
+            <th scope="col">Coupon Code</th>
+            <th scope="col">Discount Price</th>
+            <th scope="col">Discount Price Limit</th>
+            <th scope="col">Coupon Limit</th>
+            <th scope="col">Date</th>
+            <th scope="col">Action</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          {{#each coupons}}
+          <tr>
+            <th scope="row">{{@index}}</th>
+
+            <td class="text-center">{{this.Couponname}}</td>
+            <td class="text-center">{{this.Couponcode}}</td>
+            <td class="text-center">{{this.Discountprice}}</td>
+            <td class="text-center">{{this.Discountpricelimit}}</td>
+            <td class="text-center">{{this.Couponlimit}}</td>
+            <td>{{this.Date}}</td>
+
+
+            <td style="color: green;">
+              <a class="btn btn-outline-success" data-bs-target="#exampleModalss4{{this._id}}"
+                data-bs-toggle="modal">Edit</a>
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModalss4{{this._id}}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Update Coupon</h5>
+                      <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+                      <form action="/admin/editCoupon/{{this._id}}" method="post">
+                        <!-- Name input -->
+                        <div class="row">
+                          <div class="col">
+                            <input type="text" class="form-control" value="{{this.Couponname}}"
+                              placeholder="Coupen name" name="Coupenname">
+                          </div>
+                          <div class="col">
+                            <input type="text" class="form-control" value="{{this.Couponcode}}"
+                              placeholder="Coupen code" name="CoupenCode">
+                          </div>
+                        </div>
+                        <div class="row mt-2">
+                          <div class="col">
+                            <input type="number" class="form-control" value="{{this.Discountprice}}"
+                              placeholder="Discount price" name="Discountprice">
+                          </div>
+                          <div class="col">
+                            <input type="number" class="form-control" value="{{this.Discountpricelimit}}"
+                              placeholder="Discount price Limit" name="Discountpricelimit">
+                          </div>
+
+                        </div>
+                        <div class="row mt-2">
+                          <div class="col">
+                            <input type="number" class="form-control" value="{{this.Couponlimit}}"
+                              placeholder="Coupon Limit" name="Coupenlimit">
+                          </div>
+                          <div class="col">
+                            <input type="text" disabled class="form-control" placeholder="Date" name="date">
+                          </div>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-primary">Update</button>
+                      </form>
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+            <td style="color: red;"><a href="/admin/removeCoupon/{{this._id}}" class="btn btn-outline-danger">Delete</a> </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+

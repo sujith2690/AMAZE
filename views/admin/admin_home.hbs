@@ -1,0 +1,335 @@
+<div class="container-fluid px-4">
+  <h1 class="mt-4">Dashboard</h1>
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Dashboard</li>
+  </ol>
+  <div class="row mb-4" style="text-align: center;">
+    <div class="col-sm-6 col-xl-3 mb-2">
+      <div class="bg-dark text-white rounded d-flex align-items-center justify-content-between p-4">
+        <i class="fa-solid fa-users fa-3x text-white"></i>
+        <div class="ms-3">
+          <p class="mb-2">Customers</p>
+          <h6 class="mb-0">{{response.UserCount}}</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-xl-3 mb-2">
+      <div class="bg-dark text-white rounded d-flex align-items-center justify-content-between p-4">
+        <i class="fa-solid fa-person-biking fa-3x text-white"></i>
+        <div class="ms-3">
+          <p class="mb-2">Orders</p>
+          <h6 class="mb-0">{{response.OrderCount}}</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-xl-3 mb-2">
+      <div class="bg-dark text-white rounded d-flex align-items-center justify-content-between p-4">
+
+        <i class="fa-sharp fa-solid fa-link-slash fa-3x text-white"></i>
+        <div class="ms-3">
+
+          <p class="mb-2" style="color: red;">Cancelled Orders</p>
+          <h6 class="mb-0">{{response.CancelledCount}}</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-xl-3 mb-2">
+      <div class="bg-dark text-white rounded d-flex align-items-center justify-content-between p-4">
+        <i class="fa-solid fa-money-bill-1 fa-3x text-white"></i>
+        <div class="ms-3">
+          <p class="mb-2">Today Revenue</p>
+          <h6 class="mb-0">{{response.TodayRevenue}}</h6>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row mb-4" style="text-align: center;">
+    <div class="col-sm-6 col-xl-3 mb-2">
+      <div class="bg-primary text-white rounded d-flex align-items-center justify-content-between p-4">
+        <i class="fa-solid fa-boxes-stacked fa-3x text-white"></i>
+        <div class="ms-3">
+          <p class="mb-2">Total Products</p>
+          <h6 class="mb-0">{{response.ProductCount}}</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-xl-3 mb-2">
+      <div class="bg-warning text-white rounded d-flex align-items-center justify-content-between p-4">
+        <i class="fa-solid fa-handshake-simple fa-3x text-white"></i>
+        <div class="ms-3">
+          <p class="mb-2">Total COD</p>
+          <h6 class="mb-0">{{response.CodCount}}</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-xl-3 mb-2">
+      <div class="bg-success text-white rounded d-flex align-items-center justify-content-between p-4">
+        <i class="fa-regular fa-credit-card fa-3x text-white"></i>
+        <div class="ms-3">
+          <p class="mb-2">Online Payment</p>
+          <h6 class="mb-0">{{response.OnlineCount}}</h6>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-3 col-md-6 mb-2">
+      <div class="bg-danger text-white rounded d-flex align-items-center justify-content-between p-4">
+        <i class="fa fa-chart-line fa-3x text-white"></i>
+        <div class="ms-3">
+          <p class="mb-2">Total Revenue</p>
+          <h6 class="mb-0">{{response.totalRevenue}}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{!-- ............................................................. --}}
+  {{!-- <div class="row">
+    <div class="col-xl-3 col-md-6">
+      <div class="card bg-primary text-white mb-4">
+        <div class="card-body">Primary Card</div>
+        <div class="card-footer d-flex align-items-center justify-content-between">
+          <a class="small text-white stretched-link" href="#">View Details</a>
+          <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+      <div class="card bg-warning text-white mb-4">
+        <div class="card-body">Warning Card</div>
+        <div class="card-footer d-flex align-items-center justify-content-between">
+          <a class="small text-white stretched-link" href="#">View Details</a>
+          <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+      <div class="card bg-success text-white mb-4">
+        <div class="card-body">Success Card</div>
+        <div class="card-footer d-flex align-items-center justify-content-between">
+          <a class="small text-white stretched-link" href="#">View Details</a>
+          <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+      <div class="card bg-danger text-white mb-4">
+        <div class="card-body">Danger Card</div>
+        <div class="card-footer d-flex align-items-center justify-content-between">
+          <a class="small text-white stretched-link" href="#">View Details</a>
+          <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+        </div>
+      </div>
+    </div>
+  </div> --}}
+  <div class="row">
+    <div class="col-xl-6">
+      <div class="card mb-4">
+        <div class="card-header">
+          <i class="fas fa-chart-area me-1"></i>
+          Area Chart Example
+        </div>
+        <div class="card-body"><canvas id="myAChart" width="100%" height="40"></canvas></div>
+      </div>
+    </div>
+    <div class="col-xl-6">
+      <div class="card mb-4">
+        <div class="card-header">
+          <i class="fas fa-chart-area me-1"></i>
+          Pie Chart Example
+        </div>
+        <canvas id="mypieChart" style="width:100%;max-width:600px"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-6">
+      <div class="card mb-4">
+        <div class="card-header">
+          <i class="fas fa-chart-bar me-1"></i>
+          Bar Chart Example
+        </div>
+        <div class="card-body"><canvas id="myChart" width="100%" height="40"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header">
+      <i class="fas fa-table me-1"></i>
+      DataTable Example
+    </div>
+    <div class="card-body">
+      <table id="datatablesSimple">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr>
+            <td>Tiger Nixon</td>
+            <td>System Architect</td>
+            <td>Edinburgh</td>
+            <td>61</td>
+            <td>2011/04/25</td>
+            <td>$320,800</td>
+          </tr>
+          <tr>
+            <td>Rhona Davidson</td>
+            <td>Integration Specialist</td>
+            <td>Tokyo</td>
+            <td>55</td>
+            <td>2010/10/14</td>
+            <td>$327,900</td>
+          </tr>
+          <tr>
+            <td>Colleen Hurst</td>
+            <td>Javascript Developer</td>
+            <td>San Francisco</td>
+            <td>39</td>
+            <td>2009/09/15</td>
+            <td>$205,500</td>
+          </tr>
+          <tr>
+            <td>Sonya Frost</td>
+            <td>Software Engineer</td>
+            <td>Edinburgh</td>
+            <td>23</td>
+            <td>2008/12/13</td>
+            <td>$103,600</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  window.addEventListener('load', (event) => {
+    axios({
+      url: '/admin/getdash',
+      method: 'get'
+    }).then((response) => {
+      console.log(response, "response is here")
+      var xValues = [response.data.status.dateArray[0], response.data.status.dateArray[1], response.data.status.dateArray[2], response.data.status.dateArray[3], response.data.status.dateArray[4]];
+      var yValues = [response.data.status.dateSale[0], response.data.status.dateSale[1], response.data.status.dateSale[2], response.data.status.dateSale[3], response.data.status.dateSale[4]];
+      var barColors = [
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(54, 162, 235, 0.5)',
+        'rgba(255, 206, 86, 0.5)',
+        'rgba(75, 192, 192, 0.5)',
+        'rgba(153, 102, 255, 0.5)',
+
+      ];
+
+      new Chart("myChart", {
+        type: "bar",
+        data: {
+          labels: xValues,
+          datasets: [{
+            backgroundColor: barColors,
+            data: yValues
+          }]
+        },
+        options: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: "Order range"
+          }
+        }
+      })
+    })
+  });
+
+
+
+</script>
+<script>
+  window.addEventListener('load', (event) => {
+    axios({
+      url: '/admin/getdash',
+      method: 'get'
+    }).then((response) => {
+      console.log(response, "response is here")
+      var xValues = ["Orders", "Cancelled", "Prodcts", "Onlinepay"];
+      var yValues = [{{ response.OrderCount }}, {{ response.CancelledCount }}, {{ response.ProductCount }}, {{ response.OnlineCount }}];
+  var barColors = [
+    "#198754",
+    "#FF0C1B",
+    "#2b5797",
+    "#e8c3b9",
+  ];
+
+  new Chart("mypieChart", {
+    type: "pie",
+    data: {
+      labels: xValues,
+      datasets: [{
+        backgroundColor: barColors,
+        data: yValues
+      }]
+    },
+    options: {
+      legend: { display: true },
+      title: {
+        display: true,
+        text: "Order System"
+      }
+    }
+  })
+    })
+  });
+</script>
+<script>
+  window.addEventListener('load', (event) => {
+    axios({
+      url: '/admin/getdash',
+      method: 'get'
+    }).then((response) => {
+      console.log(response, "response is here")
+      var xValues = [response.data.status.dateArray[0], response.data.status.dateArray[1], response.data.status.dateArray[2], response.data.status.dateArray[3], response.data.status.dateArray[4]];
+      var yValues = [response.data.status.dateSale[0], response.data.status.dateSale[1], response.data.status.dateSale[2], response.data.status.dateSale[3], response.data.status.dateSale[4]];
+
+      new Chart("myAChart", {
+        type: "line",
+        data: {
+          labels: xValues,
+          datasets: [{
+            fill: false,
+            lineTension: 0,
+            backgroundColor: "rgba(0,0,255,1.0)",
+            borderColor: "rgba(0,0,255,2.1)",
+            data: yValues
+          }]
+        },
+        options: {
+          legend: { display: false },
+          scales: {
+            yAxes: [{ ticks: { min: 6, max: 16 } }],
+          }
+        }
+      })
+    })
+  });
+</script>

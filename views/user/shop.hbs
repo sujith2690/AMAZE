@@ -1,0 +1,51 @@
+<!-- ======= Portfolio Section ======= -->
+
+<section id="portfolio" class="portfolio">
+
+  <div class="container" {{!-- data-aos="fade-up" --}}>
+
+    <div class="section-title">
+      <h2>Choose Your Fashion...</h2>
+    </div>
+    <ul id="portfolio-flters" class="d-flex justify-content-center" {{!-- data-aos="fade-up" data-aos-delay="100" --}}>
+
+      <li data-filter="*" class="filter-active">All</li>
+
+      {{#each category}}
+      <li data-filter=".filter-{{this.categoryname}}">{{this.categoryname}}</li>
+      {{/each}}
+    </ul>
+
+    <div class="row portfolio-container" {{!-- data-aos="fade-up" data-aos-delay="200" --}}>
+      {{#each product}}
+
+      <div class=" col-lg-3 col-md-3 col-6 portfolio-item filter-{{this.categoryname.categoryname}}">
+        {{!-- <div class="card mb-4 product-wap rounded-0"> --}}
+          <div class="portfolio-img"><a href="/singleproduct/{{this._id}}"><img src="/productimages/{{this.image.[0]}}"
+                class="img-fluid" alt="">
+            </a></div>
+          <div class="portfolio-info  w-75 mx-auto d-flex justify-content-around align-items-center rounded ">
+
+            <a onclick="addtoWishlist('{{this._id}}')" style="cursor: pointer;">
+              <i class="bi bi-heart text-light"></i></a>
+            <a onclick="addtoCart('{{this._id}}')" style="cursor: pointer;">
+              <i class="h5 bi bi-cart-plus text-light"></i></a>
+          </div>
+          <div class="mt-1" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <h6><b>{{this.brand}}</b></h6>
+            <h6>{{this.productname}}</h6>
+            <h6 class="mb-0"><mark>₹{{this.offerprice}}</mark> <small><del>₹{{this.mrp}}</del></small> <mark
+                style="color: red;">{{this.percentage}}% off</mark></h6>
+          </div>
+          {{!--
+        </div> --}}
+      </div>
+      {{/each}}
+
+
+
+    </div>
+
+  </div>
+  </div>
+</section><!-- End Portfolio Section -->

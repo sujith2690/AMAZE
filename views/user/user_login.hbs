@@ -1,0 +1,58 @@
+<section class="vh-100 bg-image"
+  style="background-image: url('/loginpageimage/cool-guy-good-mood-posing-blue-background-jumping.jpg'); background-size: cover;backgrou	nd-repeat: no-repeat;height: 100vh;">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-end align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card mt-4" style="border-radius: 15px; background: transparent;">
+            <div class="card-body" style="background: transparent;">
+
+
+              <form action="/login" method="post">
+                <a href="/"> <h1 class="logo text-white text-align: center;"
+                  style="text-decoration: solid; letter-spacing: 1px; text-align: center;">AMAZE</h1></a>
+               
+                {{!-- <a class="navbar-brand text-success logo h1 text-align: center;" href="/home">
+                  AmaZe
+                </a> --}}
+
+                <div class="form-outline mb-4">
+                  <input type="email" style="text-transform: lowercase;" id="form2Example1"
+                    class="form-control form-control-lg" name="email" value="" placeholder="Enter Your Email"
+                    required />
+                  {{!-- <label class="form-label" for="form2Example17">Email address</label> --}}
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="password" id="form2Example27" class="form-control form-control-lg" name="password"
+                    value="" placeholder="Enter The Password" required />
+                  {{!-- <label class="form-label" for="form2Example27">Password</label> --}}
+                </div>
+
+                {{#if logginerror}}
+                <p class="text-danger">Invalid username or Password</p>
+                {{/if}}
+                {{#if blocked}}
+                <p class="text-danger">User Blocked</p>
+                {{/if}}
+
+                <div class="pt-1 mb-4">
+                  <button type="submit"  class="btn btn-outline-warning btn-block">Login</button>
+                </div>
+
+                <div></div>
+                <a class="small text-white" href="#!">Forgot password?</a>
+                <p class="mb-5 pb-lg-2 text-white" >Don't have an account? <a href="/signup" >Register here</a></p>
+                <a href="#!" class="small text-white">Terms of use.</a>
+                <a href="#!" class="small text-white">Privacy policy</a>
+                {{!-- <a href="/" class="small text-muted">User Login</a> --}}
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

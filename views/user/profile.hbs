@@ -1,0 +1,287 @@
+<style>
+  body {
+    color: #1a202c;
+    text-align: left;
+  }
+
+  .main-body {
+    padding: 15px;
+  }
+
+  .card {
+    box-shadow: 0 1px 50px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+  }
+
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+  }
+
+  .card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1rem;
+  }
+
+  .gutters-sm {
+    margin-right: -8px;
+    margin-left: -8px;
+  }
+
+  .gutters-sm>.col,
+  .gutters-sm>[class*=col-] {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  .mb-3,
+  .my-3 {
+    margin-bottom: 1rem !important;
+  }
+
+  .bg-gray-300 {
+    background-color: #e2e8f0;
+  }
+
+  .h-100 {
+    height: 100% !important;
+  }
+
+  .shadow-none {
+    box-shadow: none !important;
+  }
+</style>
+
+<section id="team" class="team section-bg" style="background-color: #013741ce;">
+  <div class="container">
+
+    <div class="section-title">
+      <h2 style="color: white;">Profile</h2>
+
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+
+        <div class="member d-flex align-items-start">
+          <div class="pic"><img src="/profile-images/blank-profile-picture-973460_960_720.webp" class="img-fluid" alt=""></div>
+          <div class="member-info">
+            <h4>{{userDetails.name}} {{userDetails.lastname}}</h4>
+            <span>{{userDetails.email}}</span>
+            <p>{{userDetails.mobile}}</p>
+          </div>
+          <a style="text-align: end; cursor: pointer;" type="button" data-toggle="modal"
+            data-target="#exampleModalCenter">Edit</a>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Update Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="/updateuser" method="post" id="addressForm">
+
+                  <div class="form-row" style="margin-bottom: 20px;">
+                    <div class="col">
+                      <input type="text" style="text-transform: capitalize;" class="form-control"
+                        placeholder="First name" value="{{userDetails.name}}" name="name">
+                    </div>
+                    <div class="col">
+                      <input type="text" style="text-transform: capitalize;" class="form-control"
+                        placeholder="Last name" value="{{userDetails.lastname}}" name="lastname">
+                    </div>
+                  </div>
+                  <div class="form-row" style="margin-bottom: 20px;">
+                    <div class="col">
+                      <input type="text" style="text-transform:lowercase;" class="form-control" placeholder="Email"
+                        value="{{userDetails.email}}" name="email">
+                      {{#if exist}}
+                      <p style="color: red; ">user already exist</p>
+                      {{/if}}
+                    </div>
+                  </div>
+                  <div class="form-row" style="margin-bottom: 20px;">
+                    <div class="col">
+                      <input pattern=".{10,10}" type="text" class="form-control" placeholder="Mobile Number"
+                        name="mobile" required title="plese enter 10 number" value="{{userDetails.mobile}}">
+                    </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                  </div>
+
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-6 mt-4 mt-lg-0">
+
+        <div class="member d-flex align-items-center mb-2">
+          <div style="font-size: 35px;">
+            <ion-icon name="location-outline"></ion-icon>
+          </div>
+          <div class="member-info">
+            <a href="/addresses"><h4>Address</h4></a>
+            
+          </div>
+
+
+
+
+        </div>
+        <div class="member d-flex align-items-center mt-3">
+          <div style="font-size: 35px;">
+            <ion-icon name="bicycle-outline"></ion-icon>
+          </div>
+          <div class="member-info">
+            <a href="/orders">
+              <h4>Orders</h4>
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="col-lg-6 mt-4">
+        <div class="member d-flex align-items-center">
+          <div style="font-size: 35px;">
+            <ion-icon name="copy-outline"></ion-icon>
+          </div>
+          <div class="member-info">
+            <h4>Coupons</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mt-4">
+        <div class="member d-flex align-items-center">
+          <div style="font-size: 35px;">
+            <ion-icon name="copy-outline"></ion-icon>
+          </div>
+          <div class="member-info">
+            <h4>Coupons</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- End Team Section -->
+
+
+
+</div>
+{{!-- .......................icons.............. --}}
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+{{!-- ................ajax................ --}}
+
+
+<script>
+  $().ready(function () {
+
+    $("#signupForm").validate({
+      // in 'rules' user have to specify all the constraints for respective fields
+      rules: {
+
+        name: {
+          required: true,
+          minlength: 2 //for length of lastname
+        },
+        password: {
+          required: true,
+          minlength: 3
+        },
+        confirm_password: {
+          required: true,
+          minlength: 3,
+          equalTo: "#password" //for checking both passwords are same or not
+        },
+        email: {
+          required: true,
+          email: true
+        },
+        mobile: {
+          required: true,
+          number: true,
+          minlength: 10,
+          maxlength: 10,
+
+        }
+
+      },
+      // in 'messages' user have to specify message as per rules
+      messages: {
+
+        username: {
+          required: " Please enter a username",
+          minlength: " Your username must consist of at least 2 characters"
+        },
+        password: {
+          required: " Please enter a password",
+          minlength: " Your password must be consist of at least 3 characters"
+        },
+        confirm_password: {
+          required: " Please enter a password",
+          minlength: " Your password must be consist of at least 3 characters",
+          equalTo: " Please enter the same password as above"
+        },
+        mobile: {
+          required: " Please enter a phone number",
+          minlength: " phone number must be of 10 numbers",
+          maxlength: " phone number must be of 10 numbers",
+        }
+
+      }
+    });
+  });
+
+</script>
+
+
+{{!--
+<script>
+  function updateuser(id) {
+    const name = document.getElementById('name').value
+    const lastname = document.getElementById('lastname').value
+    const email = document.getElementById('email').value
+    const mobile = document.getElementById('mobile').value
+    $.ajax({
+      url: '/updateuser',
+      method: 'post',
+      data: {
+        name: name,
+        lastname: lastname,
+        email: email,
+        mobile: mobile
+      },
+      success: (response) => {
+        console.log(response)
+        swal('Profile Updated', "", 'success')
+      }, error(error)=>{
+      swal('something went wrong',"","danger")
+    }
+    })
+  }
+</script> --}}

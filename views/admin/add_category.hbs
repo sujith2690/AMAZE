@@ -1,0 +1,19 @@
+
+<form action="/admin/addcategory" method="post">
+    <div class="form-outline  d-flex justify-content-center  form-control-lg shadow mt-5">
+        <input type="text" style="text-transform: capitalize;" id="form3Example4cdg" required name="categoryname" class="form-control-lg form-control "
+            placeholder="Enter category name" />
+        {{!-- <label class="form-label" for="form3Example4cdg"></label> --}}
+        
+    </div>
+    {{#if categoryexist}}
+
+        <p style="color: red ">Category already exist</p>
+
+        {{/if}}
+    <div class="d-flex justify-content-center mt-5">
+        <button type="submit" class="btn btn-outline-success btn-block btn-lg gradient-custom-4">Submit</button>
+    </div>
+
+</form>
+<a style="width: 1.5cm;" type="button" action="post" href="/admin" class="btn btn-sucess">Home</a>

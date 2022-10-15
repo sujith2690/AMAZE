@@ -1,0 +1,57 @@
+
+
+<div class="container-fluid">
+  <nav class="navbar navbar-light  justify-content-between">
+
+    <a class="navbar-brand"><b>Category Management</b> </a>
+
+  </nav>
+  <a href="/admin/add_category" class="btn btn-success mx-auto mt-2">Add Category</a>
+
+
+
+  <div class="card mb-4 mt-2">
+    <div class="card-header">
+      <i class="fas fa-table me-1"></i>
+      Category Management Table
+    </div>
+    <div class="card-body">
+      <table id="datatablesSimple">
+        <thead>
+
+          <tr>
+            <th scope="col">Sl.No</th>
+            <th scope="col">Category</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {{#each response}}
+          <tr>
+            <td scope="row">{{@index}}</td>
+            <td>{{this.categoryname}}</td>
+            <td>
+
+              <a class="btn btn-outline-success" href="/admin/update-category/{{this._id}}">
+                Update
+              </a>
+
+              <a class="btn btn-outline-danger" href="/admin/delete-category/{{this._id}}"
+                onclick="return confirm('Are you sure you want to Delete category {{this.categoryname}} ?')">
+                Delete
+              </a>
+
+
+            </td>
+
+
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+</div>

@@ -1,0 +1,547 @@
+<link rel='stylesheet' href='/stylesheets/checkout.css' />
+<style>
+  .title {
+    margin-bottom: 5vh;
+  }
+
+  .card {
+
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 1rem;
+    border: transparent;
+  }
+
+  @media(max-width:767px) {
+    .card {
+      margin: 3vh auto;
+    }
+  }
+
+  .cart {
+    background-color: #fff;
+    padding: 4vh 5vh;
+    border-bottom-left-radius: 1rem;
+    border-top-left-radius: 1rem;
+  }
+
+  @media(max-width:767px) {
+    .cart {
+      padding: 4vh;
+      border-bottom-left-radius: unset;
+      border-top-right-radius: 1rem;
+    }
+  }
+
+  .summary {
+    background-color: #ddd;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    padding: 4vh;
+    color: rgb(65, 65, 65);
+  }
+
+  @media(max-width:767px) {
+    .summary {
+      border-top-right-radius: unset;
+      border-bottom-left-radius: 1rem;
+    }
+  }
+
+  .summary .col-2 {
+    padding: 0;
+  }
+
+  .summary .col-10 {
+    padding: 0;
+  }
+
+  .row {
+    margin: 0;
+  }
+
+  .title b {
+    font-size: 1.5rem;
+  }
+
+  .main {
+    margin: 0;
+    padding: 2vh 0;
+    width: 100%;
+  }
+
+  .col-2,
+  .col {
+    padding: 0 1vh;
+  }
+
+  a {
+    padding: 0 1vh;
+  }
+
+  .close {
+    margin-left: auto;
+    font-size: 0.7rem;
+  }
+
+  img {
+    width: 5.5rem;
+  }
+
+  .back-to-shop {
+    margin-top: 4.5rem;
+  }
+
+  h5 {
+    margin-top: 4vh;
+  }
+
+  hr {
+    margin-top: 1.25rem;
+  }
+
+  form {
+    padding: 2vh 0;
+  }
+
+  select {
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1.5vh 1vh;
+    margin-bottom: 4vh;
+    outline: none;
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+  }
+
+  input {
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1vh;
+    margin-bottom: 4vh;
+    outline: none;
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+  }
+
+  input:focus::-webkit-input-placeholder {
+    color: transparent;
+  }
+
+
+  a {
+    color: black;
+  }
+
+  a:hover {
+    color: black;
+    text-decoration: none;
+  }
+
+  #code {
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253), rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: center;
+  }
+</style>
+
+<section id="portfolio" class="portfolio">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Checkout...</h2>
+    </div>
+
+
+
+    <div class="card">
+      <div class="row">
+        <div class="col-md-9 cart">
+          <div class="title">
+            <div class="row">
+              <div class="col">
+                <h4><b>Checkout </b></h4>
+                <h6>Choose Your delivery Location </h6>
+              </div>
+              <div class="col" style="text-align: end;">
+                <a  data-toggle="modal" data-target="#ModalCenter1">
+                  <ion-icon name="add-circle-outline" style="color: green; cursor: pointer;"></ion-icon>Add Address
+                </a>
+
+                {{!-- ........................Modal add address............................ --}}
+
+                <div class="modal fade" id="ModalCenter1" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
+                  aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLongTitle">Add Address</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+
+                        <form action="/add_address_checkout" method="post" id="AddressForm">
+                          {{!-- <form action="/checkout" method="post" id="AddressForm"> --}}
+
+                            <div class="form-row" style="margin-bottom: 20px;">
+                              <div class="col">
+                                <input type="text" class="form-control" placeholder="Name" name="name" required>
+                              </div>
+                            </div>
+                            <div class="form-row" style="margin-bottom: 20px;">
+                              <div class="col">
+                                <input type="text" class="form-control" placeholder="Housename" name="housename"
+                                  required>
+                              </div>
+                              <div class="col">
+                                <input type="text" class="form-control" placeholder="Apartment" name="apartment"
+                                  required>
+                              </div>
+                            </div>
+                            <div class="form-row" style="margin-bottom: 20px;">
+                              <div class="col">
+                                <input type="text" style="text-transform: capitalize;" class="form-control"
+                                  placeholder="Village / City Name" name="villageorcity">
+                              </div>
+                              <div class="col">
+                                <input type="text" style="text-transform: capitalize;" class="form-control"
+                                  placeholder="Postoffice" name="postoffice">
+                              </div>
+                            </div>
+                            <div class="form-row" style="margin-bottom: 20px;">
+                              <div class="col">
+                                <input type="text" style="text-transform: capitalize;" class="form-control"
+                                  placeholder="District" name="district">
+                              </div>
+                              <div class="col">
+                                <input type="text" style="text-transform: capitalize;" class="form-control"
+                                  placeholder="PIN NO" name="pin">
+                              </div>
+                            </div>
+                            <div class="form-row" style="margin-bottom: 20px;">
+                              <div class="col">
+                                <input pattern=".{10,10}" type="number" class="form-control" placeholder="Mobile Number"
+                                  name="mobile" title="plese enter 10 number">
+                              </div>
+                              <div class="col">
+                                <input type="text" class="form-control" placeholder="Near By Landmark" name="landmark">
+                              </div>
+                            </div>
+                            <div class="form-row" style="margin-bottom: 20px;">
+                              <div class="col">
+                                <input type="text" class="form-control" placeholder="State" name="state"
+                                  value="{{this.state}}">
+                              </div>
+                              <div class="col">
+                                <input type="text" class="form-control" readonly placeholder="Country" name="Country"
+                                  value="INDIA">
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                              <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+
+                          </form>
+
+                          {{!-- ................................ --}}
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+
+
+          <div class="accordion" id="accordionExample">
+
+            {{#each address.addresses}}
+
+            <div class="card-header" id="heading{{@index}}">
+              <h2 class="mb-0 ">
+                <button class="btn btn-outline-dark btn-block text-left {{#unless @first}}collapsed{{/unless}}"
+                  type="button" data-toggle="collapse" data-target="#collapse{{@index}}"
+                  aria-expanded="{{#if @first}}true{{else}}false{{/if}}" aria-controls="collapse  {{@index}}">
+                  {{this.name}}&nbsp;{{this.mobile}}
+
+                </button>
+              </h2>
+            </div>
+
+            <div id="collapse{{@index}}" class="collapse {{#if @first}}show{{/if}}" aria-labelledby="heading{{@index}}"
+              data-parent="#accordionExample">
+              <div class="card-body">
+                <div class="row border-top">
+                  <div class="form-check d-flex justify-content-between">
+                    <div class="my-auto mx-3">
+                      <input value="{{this._id}}" name="address" type="radio" class="form-check-input" {{#if
+                        @first}}checked{{/if}}>
+                    </div>
+                    <div class="row main align-items-center">
+                      <ul class="h6" style="list-style-type:none;">
+                        <li>{{this.name}}</li>
+                        <li>{{this.housename}}, {{this.villageorcity}}</li>
+
+                        <li>{{this.apartment}}, {{this.postoffice}} PO ,PIN {{this.pin}}</li>
+
+                        <li> {{this.district}}, {{this.state}}</li>
+                        <li>
+                          MOB +91-{{this.mobile}},
+                          <ion-icon name="location-outline"></ion-icon> {{this.landmark}}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+          <div>
+            <div><b>
+                <h5>Payment method</h5>
+              </b> </div>
+            <div class="row mt-2">
+              <div class="col form-check ml-5">
+                <input class="form-check-input" value="COD" type="radio" name="paymentMethod" id="flexRadioDefault1"
+                  checked>
+                <label class="form-check-label" for="flexRadioDefault1">
+                  C O D
+                </label>
+              </div>
+              <div class="col form-check">
+                <input class="form-check-input" value="onlinepayment" type="radio" name="paymentMethod"
+                  id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Online Payment
+                </label>
+              </div>
+            </div>
+
+          </div>
+          <!--collapse-->
+          {{!-- ........................................................ --}}
+
+
+
+        </div>
+        <div class="col-md-3 summary" style="background-color: #013741;">
+
+          <div>
+            <h5 style="color: white;"><b>Order Summary</b></h5>
+          </div>
+          <div class="row" style="border-top: 1px solid white; padding: 2vh 0; color: white;">
+            <div class="col h4">Items {{DatasCart.count}}
+            </div>
+            <div style="height: 200px;overflow-y: auto;">
+              {{#each DatasCart}}
+              <div>
+
+                <div class="row d-flex">
+                  <div class="col d-flex justify-content-between">
+                    <div><img src="/productimages/{{this.productId.image.[0]}}" alt="" width="50"></div>
+                    <div>
+                      <div>
+                        <div style="font-size: 14px !important; ">
+                          {{this.productId.brand}}
+                        </div>
+                        <div class="mt-4" style="font-size: 16px !important;text-align: end;">
+                          {{this.quantity}} X {{this.productId.offerprice}}
+                        </div>
+                        <div class="" style="font-size: 16px !important;text-align: end;">
+                          ₹ {{subTotal this.quantity this.productId.offerprice}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+              </div>
+              {{/each}}
+            </div>
+
+
+            <div>
+              <br>
+              <div class="row" style="border-top: 1px solid white; padding: 2vh 0; color: white">
+                <div class="col-auto">
+                  <div class="input-group mb-2">
+                    <input type="text" class="form-control" name="Coupencode" id="Coupencode" placeholder="Coupon ">
+                    <div class="input-group-prepend">
+                      <div class="input-group-btn">
+                        <a class="btn btn-outline-warning" onclick="applyCoupon()">Apply</a>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col h5">Total PRICE</div>
+                <div class="col text-right"><span id="coupontotal"> ₹ {{products.grandtotalprice}}</span></div>
+              </div>
+
+              <button class="btn btn-outline-info w-100" type="submit" onclick="payment()">PROCEED</button>
+              {{!-- ....................................... --}}
+
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function applyCoupon() {
+    console.log('ffffffffff')
+    let value = document.getElementById('Coupencode').value
+    console.log('val ', value)
+    axios({
+      method: 'post',
+      url: '/applyCoupon',
+      data: {
+        code: value
+      }
+    }).then((e) => {
+      //alert(e)
+      console.log("aaaaaaaaaaa", e.data)
+      console.log(e.data.Coupon_grandtotal, "----------aaaaaaaaaaa")
+      if (e.data.Coupon_grandtotal == undefined) {
+        swal({
+          text: "coupon doesn't exist",
+          icon: "warning",
+          button: false,
+          timer: 1000,
+        })
+        setTimeout(() => {
+          location.reload()
+        }, 600)
+
+      } else {
+        let grandTotal = document.getElementById('coupontotal')
+        console.log(grandTotal, "jjjjj")
+        grandTotal.innerHTML = e.data.Coupon_grandtotal
+        swal({
+          text: "Coupon Applied ...!",
+          icon: "success",
+          button: false,
+          timer: 1000
+        })
+        console.log(grandTotal, "qqqq")
+      }
+    })
+  }
+
+  const payment = () => {
+    let address = $('input[type = "radio"][name = "address"]:checked').val()
+    console.log(address, 'payment address')
+
+    let billtype = $('input[type="radio"][name="paymentMethod"]:checked').val()
+    console.log(billtype, '.................payment type')
+    // location.href= `/bill/${address}`
+    try {
+      axios.post('/payment', { address, billtype })
+        .then((e) => {
+
+          console.log(billtype, "sujithppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp")
+          if (billtype == 'COD') {
+            swal({
+              text: "Your Order is Placed ...!",
+              icon: "success",
+              button: false,
+               // timer: 1000
+            })
+            setTimeout(() => {
+              console.log(e.data.data, 'oooooooooooooooo')
+              location.href = `/order_confirm/${e.data.data.receipt}`
+            }, 1000)
+            // e.data.data.billtype = "COD"
+
+          } else {
+            console.log(e.data.data, 'datasasdasdasdas')
+            razorpayPayment(e.data.data)
+          }
+        })
+    } catch (error) {
+      console.log('errrorr ....axios', error)
+    }
+    //location.href= `/payment/${address._id}`
+  }
+
+  function razorpayPayment(order) {
+    console.log(order)
+    var options = {
+      "key": "rzp_test_8yHS6YjsYUGv0D", // Enter the Key ID generated from the Dashboard
+      "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      "currency": "INR",
+      "name": "AmaZe ",
+      "description": "Your FIn ",
+      "image": "https://example.com/your_logo",
+      //"order_id": ""+order.receipt, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      "handler": function (response) {
+        // alert(response.razorpay_payment_id);
+
+        verifyPayment(response, order)
+      },
+      "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "1212121212"
+      },
+      "notes": {
+        "address": "Razorpay Corporate Office"
+      },
+      "theme": {
+        "color": "#3399cc"
+      }
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
+  }
+
+
+  const verifyPayment = async (payment, order) => {
+    console.log(payment, order, '......verify payment')
+    try {
+      const res = await axios.post('/verifyPayment', {
+        payment,
+        order
+      }).then((e) => {
+        if (e.data.status) {
+          console.log(e.data.status, '......1111111111111')
+          console.log(order.receipt, '----------------------------')
+
+          //alert('payment success')
+          swal({
+            text: "Your Order is Placed ...!",
+            icon: "success",
+            button: false,
+           // timer: 1000
+          })
+
+          setTimeout(() => {
+            location.href = `/order_confirm/${order.receipt}`;
+          }, 1000)
+
+
+        } else {
+        //  alert('.........payment failed')
+           location.href = `/order_confirm/${order.receipt}`
+        }
+      })
+    } catch (error) {
+      console.log(error, 'erroroo,............')
+      location.href = `/order_confirm/${order.receipt}`
+    }
+  }
+</script>

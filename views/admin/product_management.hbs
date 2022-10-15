@@ -1,0 +1,79 @@
+<div class="container-fluid">
+  <nav class="navbar navbar-light  justify-content-between">
+
+    <a class="navbar-brand"><b>Product Management</b> </a>
+
+  </nav>
+  <a href="/admin/add-products" class="btn btn-success mx-auto mt-2">Add Product</a>
+
+
+
+  <div class="card mb-4 mt-2">
+    <div class="card-header">
+      <i class="fas fa-table me-1"></i>
+      Product Management Table
+    </div>
+    <div class="card-body">
+      <table id="datatablesSimple">
+        <thead>
+
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">M R P</th>
+            <th scope="col">Offer Price</th>
+            <th scope="col">Catergory name</th>
+            <th scope="col">Image</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th scope="col">Sl.No</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">M R P</th>
+            <th scope="col">Offer Price</th>
+            <th scope="col">Catergory name</th>
+            <th scope="col">Image</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Action</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          {{#each productdetails}}
+
+          <tr>
+            <th scope="row">{{count @index}}</th>
+            <td>{{this.brand}}</td>
+            <td style="text-transform: capitalize;">{{this.productname}}</td>
+            <td>₹{{this.mrp}}</td>
+            <td>₹{{this.offerprice}}</td>
+            <td>{{categoryname.categoryname}}</td>
+            <td>
+              <img src="/productimages/{{this.image.[0]}}" alt="" width="50em">
+            </td>
+            <td>{{this.stock}}</td>
+            <td>
+              <a class="btn btn-outline-success" href="/admin/update-product/{{this._id}}">
+                <ion-icon name="cut-outline"></ion-icon>
+              </a>
+
+              <a class="btn btn-outline-danger mt-2" href="/admin/delete-product/{{this._id}}"
+                onclick="return confirm('Are you sure you want to Delete {{this.categoryname}} ?')">
+                <ion-icon name="trash-bin-outline"></ion-icon>
+              </a>
+            </td>
+            {{/each}}
+
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+</div>

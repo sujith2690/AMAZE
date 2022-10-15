@@ -1,0 +1,77 @@
+<div class="container mt-2">
+    <br>
+    <div class="mb-2">
+        <a type="submit" class="btn btn-outline-success ml-auto" href="/admin/add_user">+ ADD USER</a>
+        <a type="submit" class="btn btn-outline-success ml-auto" href="/admin/add_admin">+ ADD ADMIN</a>
+    </div>
+
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            User Management Table
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Change Status</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Change Status</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {{#each user}}
+                    <tr>
+                        <th scope="row">{{@index}}</th>
+                        <td>{{this.name}}</td>
+                        <td class="text-center">{{this.lastname}}</td>
+                        <td class="text-center">{{this.email}}</td>
+                        <td class="text-center">{{this.mobile}}</td>
+
+                        {{#if this.status}}
+                        <td style="color: red;">Block</td>
+                        {{else}}
+                        <td style="color: green;">Active</td>
+                        {{/if}}
+
+                        <td>
+                            {{#if this.status}}
+                            <a class="btn btn-outline-success" href="/admin/active-user/{{this._id}}"
+                                onclick="return confirm('Are you sure you want to active user {{this.name}} ?')">
+                                <ion-icon name="checkmark-outline"></ion-icon>Unblock
+                            </a>
+                            {{else}}
+                            <a class="btn btn-outline-danger" href="/admin/block-user/{{this._id}}"
+                                onclick="return confirm('Are you sure you want to block user {{this.name}} ?')">
+                                <ion-icon name="close-outline"></ion-icon>Block
+                                </ion-icon>
+                            </a>
+                            {{/if}}
+                            {{!-- <ion-icon name="close-outline"></ion-icon> --}}
+                        </td>
+                    </tr>
+
+                    {{/each}}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

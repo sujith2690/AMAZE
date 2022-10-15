@@ -1,0 +1,140 @@
+<!-- Navbar -->
+
+
+<div class="container-fluid">
+
+  <h4>Order Management</h4>
+
+  <div class="card mb-4">
+
+    <div class="card-body">
+      <table id="datatablesSimple">
+        <thead>
+
+          <tr>
+            <th scope="col">Sl.No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Products</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total Price</th>
+            <th scope="col">Payment Method</th>
+            <th scope="col">Product Status</th>
+            <th scope="col">Delivery Status</th>
+            <th scope="col">Change Status</th>
+            <th scope="col">Cancel Order</th>
+            <th scope="col">Order Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each orders}}
+          <tr>
+            <th scope="row">{{count @index}}</th>
+            <td class="text-center">{{this.userId.name}}</td>
+            <td class="text-center">{{this.userId.email}}</td>
+
+            <td class="text-center">
+
+
+              {{#each this.orderitems}}<li> {{this.productId.productname}} {{/each}}
+              </li>
+            </td>
+            <td class="text-center" > {{#each this.orderitems}}{{this.quantity}} <br> {{/each}}</td>
+            {{#if this.grandtotalamount}}
+            <td class="text-center" style="text-align: center; vertical-align: middle;">{{this.grandtotalamount}}</td>
+            {{else}}
+            <td class="text-center">{{this.totalamount}}
+              {{/if}}
+            <td class="text-center" style="vertical-align: middle;">
+              {{#if (eq this.paymentMethod 'COD')}} <span class="badge badge-danger">{{this.paymentMethod}}</span>
+              {{else}} <span class="badge badge-success">{{this.paymentMethod}}</span>
+              {{/if}}
+              </td>
+            <td class="text-center"style="vertical-align: middle;">{{this.productStatus}}</td>
+            <td class="text-center update" id="status" style="vertical-align: middle;">{{this.deliveryStatus}}</td>
+            <td class="text-center update" style="vertical-align: middle;">
+
+              {{#if (eq this.productStatus 'Pending')}}
+              <a class="btn btn-warning" onclick="shipped('{{this._id}}')">
+                Pending
+              </a>
+              ...<i class="fa-solid fa-truck-fast"></i>...<i class="fa-solid fa-house-user"></i>
+
+              {{/if}}
+
+              {{#if (eq this.productStatus 'Shipped')}}
+              <a class="btn btn-outline-success" onclick="delivered('{{this._id}}')">
+                <h6>Shipped</h6>
+
+              </a>
+              <i class="fa-solid fa-boxes-packing"></i>... ...<i class="fa-solid fa-house-user"></i>
+              {{/if}}
+              {{#if (eq this.productStatus "Delivered")}}
+
+              <h6 style="color: red;">Delivered</h6>
+              <i class="fa-solid fa-house-user"></i>
+              {{/if}}
+
+            </td>
+            <td  style="color: red; text-align: center; vertical-align: middle;">
+
+              {{#if (eq this.productStatus "Cancelled")}}
+              <i class="fa-sharp fa-solid fa-xmark"></i> Cancelled
+              {{/if}}
+              {{#if (or (eq this.productStatus "Pending") (eq this.productStatus 'Shipped')) }}
+              <a class="btn btn-outline-danger"  onclick="cancelorder('{{this._id}}')">Cancel</a>
+              {{/if}}
+
+            <td class="text-center">{{format this.createdAt}}</td>
+
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script>
+
+  async function shipped(id) {
+    console.log(id, "jijijijijijjiijijijjiji")
+    axios({
+      method: 'post',
+      url: '/admin/ShipOrder/' + id
+      
+    }).then((response) => {
+
+    location.reload()
+
+    }).catch((response) => {
+      console.log(response, "catch error at shipped axios.")
+    })
+  }
+
+  async function delivered(id) {
+    console.log(id, "jijijijijijjiijijijjiji")
+    axios({
+      method: 'post',
+      url: '/admin/Delivered/' + id
+
+    }).then((response) => {
+    location.reload()
+    }).catch((response) => {
+      console.log(response, "catch error at delivered axios.")
+    })
+  }
+
+  async function cancelorder(id) {
+    axios({
+      method: 'post',
+      url: '/admin/cancelorder/' + id
+
+    }).then((response) => {
+      location.reload()
+    }).catch((response) => {
+      console.log(response, "catch error at delivered axios.")
+    })
+  }
+
+</script>
