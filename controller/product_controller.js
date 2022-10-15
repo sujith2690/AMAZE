@@ -49,10 +49,10 @@ module.exports = {
 
     getlatestProductDetails: () => {
 
-        return new Promise(async(resolve,reject)=>{
+        return new Promise(async (resolve, reject) => {
             let response = {}
-            let product = await productmodel.find().sort({createdAt:-1}).limit(4).lean()
-            console.log(product,'-------------0000000000000000');
+            let product = await productmodel.find().sort({ createdAt: -1 }).limit(4).lean()
+            console.log(product, '-------------0000000000000000');
             response = product
             resolve(response)
         })
@@ -80,13 +80,18 @@ module.exports = {
     },
     getPoductvalue: (productID) => {
         return new Promise(async (resolve, reject) => {
-            let response = {}
-            let product = await productmodel.findOne({ _id: productID }).lean()
 
-            response.status;
-            response.data = product;
-            console.log(response, 'gggggeeetttttttttttttpdt va');
-            resolve(response)
+            try {
+                let response = {}
+                let product = await productmodel.findOne({ _id: productID }).lean()
+                response.status;
+                response.data = product;
+                console.log(response, 'gggggeeetttttttttttttpdt va');
+                resolve(response)
+            } catch (error) {
+                reject(error)
+            }
+
 
         })
     },

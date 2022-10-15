@@ -9,11 +9,12 @@
 # General
 --------------------------------------------------------------*/
 body {
-  padding-top: 25px;
   font-family: "Open Sans", sans-serif;
   color: #444444;
 }
-
+main{
+  padding-top: 25px;
+}
 a {
   color: #47b2e4;
   text-decoration: none;
@@ -138,7 +139,7 @@ h6 {
   line-height: 1;
   font-weight: 500;
   letter-spacing: 2px;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 #header .logo a {
@@ -1320,7 +1321,7 @@ section {
 }
 
 .pricing .featured .buy-btn {
-  background: #47b2e4;
+  background: #262f33;
   color: #fff;
 }
 

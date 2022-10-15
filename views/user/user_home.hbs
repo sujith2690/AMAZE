@@ -1,32 +1,36 @@
-<main id="main" class="mt-5">
-    <div id="carouselExampleIndicators" class="carousel slide" style="height: 25%;" data-ride="carousel">
-        <ol class="carousel-indicators">
-            {{#each bannerDetails}}
-            <li data-target="#carouselExampleIndicators" data-slide-to="{{@index}}" class="active"></li>
-            {{/each}}
-        </ol>
-        <div class="carousel-inner">
-            {{#each bannerDetails}}
-            <div class="carousel-item {{#if @first}} active {{/if}}">
-                <div style="height: 25em;object-fit: cover;">
-                    <img class="d-block h-100 w-100" src="/banner-images/{{this.image.[0]}}" alt="First slide">
+<main id="main" class="mt-4">
+    <div class="">
+
+
+        <div id="carouselExampleIndicators" class="carousel slide" style="height: 25%;" data-ride="carousel">
+            <ol class="carousel-indicators">
+                {{#each bannerDetails}}
+                <li data-target="#carouselExampleIndicators" data-slide-to="{{@index}}" class="active"></li>
+                {{/each}}
+            </ol>
+            <div class="carousel-inner">
+                {{#each bannerDetails}}
+                <div class="carousel-item {{#if @first}} active {{/if}}">
+                    <div style="object-fit: cover; max-height: 25rem;">
+                        <img class="d-block w-100" src="/banner-images/{{this.image.[0]}}" alt="First slide">
+                    </div>
+                    <div class="carousel-caption d-none d-md-block" style="color: red;">
+                        <h3>{{this.bannerheading}}</h3>
+                        <h5>{{this.bannersubheading}}</h5>
+                        <p>{{this.description}}</p>
+                    </div>
                 </div>
-                <div class="carousel-caption d-none d-md-block" style="color: red;">
-                    <h3>{{this.bannerheading}}</h3>
-                    <h5>{{this.bannersubheading}}</h5>
-                    <p>{{this.description}}</p>
-                </div>
+                {{/each}}
             </div>
-            {{/each}}
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only"></span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only"></span>
+            </a>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only"></span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only"></span>
-        </a>
     </div>
 
     <!-- ======= Clients Section ======= -->
@@ -67,16 +71,16 @@
 
             </div>
 
-            <div class="row">
+            <div class="row ">
                 {{#each latest}}
-                <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-xl-3 col-md-6 d-flex col-6 mb-2" data-aos="zoom-in" data-aos-delay="100">
                     <div class="icon-box ">
 
                         <div class="portfolio-img"><a href="/singleproduct/{{this._id}}"><img
                                     src="/productimages/{{this.image.[0]}}" class="img-fluid" alt="">
                             </a></div>
-                        <div class="text-center">
-                            <h4><a >{{this.productname}}</a></h4>
+                        <div class="text-center mb-2">
+                            <h4><a>{{this.productname}}</a></h4>
                             <p><b>{{this.brand}}</b></p><br>
                             <h6 class="mb-0"> <del>₹{{this.mrp}}</del> <mark style="color: red;">{{this.percentage}}%
                                     off</mark></h6>
@@ -109,6 +113,6 @@
         </div>
     </section><!-- End Cta Section -->
 
-    
+
 
 </main><!-- End #main -->

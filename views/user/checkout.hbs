@@ -125,6 +125,9 @@
     color: transparent;
   }
 
+  .error {
+    color: red;
+  }
 
   a {
     color: black;
@@ -162,8 +165,10 @@
                 <h6>Choose Your delivery Location </h6>
               </div>
               <div class="col" style="text-align: end;">
-                <a  data-toggle="modal" data-target="#ModalCenter1">
-                  <ion-icon name="add-circle-outline" style="color: green; cursor: pointer;"></ion-icon>Add Address
+                <a data-toggle="modal" data-target="#ModalCenter1" style="cursor: pointer;">
+                  <b>
+                    <ion-icon name="add-outline" style="color: green; "></ion-icon> Add Address
+                  </b>
                 </a>
 
                 {{!-- ........................Modal add address............................ --}}
@@ -181,71 +186,69 @@
                       <div class="modal-body">
 
                         <form action="/add_address_checkout" method="post" id="AddressForm">
-                          {{!-- <form action="/checkout" method="post" id="AddressForm"> --}}
 
-                            <div class="form-row" style="margin-bottom: 20px;">
-                              <div class="col">
-                                <input type="text" class="form-control" placeholder="Name" name="name" required>
-                              </div>
-                            </div>
-                            <div class="form-row" style="margin-bottom: 20px;">
-                              <div class="col">
-                                <input type="text" class="form-control" placeholder="Housename" name="housename"
-                                  required>
-                              </div>
-                              <div class="col">
-                                <input type="text" class="form-control" placeholder="Apartment" name="apartment"
-                                  required>
-                              </div>
-                            </div>
-                            <div class="form-row" style="margin-bottom: 20px;">
-                              <div class="col">
-                                <input type="text" style="text-transform: capitalize;" class="form-control"
-                                  placeholder="Village / City Name" name="villageorcity">
-                              </div>
-                              <div class="col">
-                                <input type="text" style="text-transform: capitalize;" class="form-control"
-                                  placeholder="Postoffice" name="postoffice">
-                              </div>
-                            </div>
-                            <div class="form-row" style="margin-bottom: 20px;">
-                              <div class="col">
-                                <input type="text" style="text-transform: capitalize;" class="form-control"
-                                  placeholder="District" name="district">
-                              </div>
-                              <div class="col">
-                                <input type="text" style="text-transform: capitalize;" class="form-control"
-                                  placeholder="PIN NO" name="pin">
-                              </div>
-                            </div>
-                            <div class="form-row" style="margin-bottom: 20px;">
-                              <div class="col">
-                                <input pattern=".{10,10}" type="number" class="form-control" placeholder="Mobile Number"
-                                  name="mobile" title="plese enter 10 number">
-                              </div>
-                              <div class="col">
-                                <input type="text" class="form-control" placeholder="Near By Landmark" name="landmark">
-                              </div>
-                            </div>
-                            <div class="form-row" style="margin-bottom: 20px;">
-                              <div class="col">
-                                <input type="text" class="form-control" placeholder="State" name="state"
-                                  value="{{this.state}}">
-                              </div>
-                              <div class="col">
-                                <input type="text" class="form-control" readonly placeholder="Country" name="Country"
-                                  value="INDIA">
-                              </div>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-                              <button type="submit" class="btn btn-primary">Save changes</button>
+                          <div class="form-row" style="margin-bottom: 20px;">
+                            <div class="col">
+                              <input type="text" class="form-control" placeholder="Name" name="name" required>
                             </div>
+                          </div>
+                          <div class="form-row" style="margin-bottom: 20px;">
+                            <div class="col">
+                              <input type="text" class="form-control" placeholder="Housename" name="housename" required>
+                            </div>
+                            <div class="col">
+                              <input type="text" class="form-control" placeholder="Apartment" name="apartment" required>
+                            </div>
+                          </div>
+                          <div class="form-row" style="margin-bottom: 20px;">
+                            <div class="col">
+                              <input type="text" style="text-transform: capitalize;" class="form-control"
+                                placeholder="Village / City Name" name="villageorcity">
+                            </div>
+                            <div class="col">
+                              <input type="text" style="text-transform: capitalize;" class="form-control"
+                                placeholder="Postoffice" name="postoffice">
+                            </div>
+                          </div>
+                          <div class="form-row" style="margin-bottom: 20px;">
+                            <div class="col">
+                              <input type="text" style="text-transform: capitalize;" class="form-control"
+                                placeholder="District" name="district">
+                            </div>
+                            <div class="col">
+                              <input type="number" style="text-transform: capitalize;" class="form-control"
+                                placeholder="PIN NO" name="pin">
+                            </div>
+                          </div>
+                          <div class="form-row" style="margin-bottom: 20px;">
+                            <div class="col">
 
-                          </form>
+                              <input type="number" class="form-control" placeholder="Mobile Number" name="mobile">
+                            </div>
+                            <div class="col">
+                              <input type="text" class="form-control" placeholder="Near By Landmark" name="landmark">
+                            </div>
+                          </div>
+                          <div class="form-row" style="margin-bottom: 20px;">
+                            <div class="col">
+                              <input type="text" class="form-control" placeholder="State" name="state"
+                                value="{{this.state}}">
+                            </div>
+                            <div class="col">
+                              <input type="text" class="form-control" readonly placeholder="Country" name="Country"
+                                value="INDIA">
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-                          {{!-- ................................ --}}
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                          </div>
+
+                        </form>
+
+                        {{!-- ................................ --}}
 
                       </div>
 
@@ -257,8 +260,71 @@
 
             </div>
           </div>
+          {{!-- {{#if address_empty}}
+          <div>
+
+          </div>
+          <form action="/add_address_checkout" method="post" id="AddressForm">
 
 
+            <div class="form-row" style="margin-bottom: 20px;">
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Name" name="name" required>
+              </div>
+            </div>
+            <div class="form-row" style="margin-bottom: 20px;">
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Housename" name="housename" required>
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Apartment" name="apartment" required>
+              </div>
+            </div>
+            <div class="form-row" style="margin-bottom: 20px;">
+              <div class="col">
+                <input type="text" style="text-transform: capitalize;" class="form-control"
+                  placeholder="Village / City Name" name="villageorcity">
+              </div>
+              <div class="col">
+                <input type="text" style="text-transform: capitalize;" class="form-control" placeholder="Postoffice"
+                  name="postoffice">
+              </div>
+            </div>
+            <div class="form-row" style="margin-bottom: 20px;">
+              <div class="col">
+                <input type="text" style="text-transform: capitalize;" class="form-control" placeholder="District"
+                  name="district">
+              </div>
+              <div class="col">
+                <input type="number" style="text-transform: capitalize;" class="form-control" placeholder="PIN NO"
+                  name="pin">
+              </div>
+            </div>
+            <div class="form-row" style="margin-bottom: 20px;">
+              <div class="col">
+
+                <input type="number" class="form-control" placeholder="Mobile Number" name="mobile">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Near By Landmark" name="landmark">
+              </div>
+            </div>
+            <div class="form-row" style="margin-bottom: 20px;">
+              <div class="col">
+                <input type="text" class="form-control" placeholder="State" name="state" value="{{this.state}}">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" readonly placeholder="Country" name="Country" value="INDIA">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+
+          </form>
+          {{else}} --}}
 
           <div class="accordion" id="accordionExample">
 
@@ -304,6 +370,7 @@
               </div>
             </div>
             {{/each}}
+
           </div>
           <div>
             <div><b>
@@ -401,6 +468,12 @@
   </div>
 </section>
 
+
+
+
+
+
+
 <script>
   function applyCoupon() {
     console.log('ffffffffff')
@@ -443,37 +516,53 @@
   }
 
   const payment = () => {
+
     let address = $('input[type = "radio"][name = "address"]:checked').val()
     console.log(address, 'payment address')
+    if (address) {
 
-    let billtype = $('input[type="radio"][name="paymentMethod"]:checked').val()
-    console.log(billtype, '.................payment type')
-    // location.href= `/bill/${address}`
-    try {
-      axios.post('/payment', { address, billtype })
-        .then((e) => {
 
-          console.log(billtype, "sujithppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp")
-          if (billtype == 'COD') {
-            swal({
-              text: "Your Order is Placed ...!",
-              icon: "success",
-              button: false,
-               // timer: 1000
-            })
-            setTimeout(() => {
-              console.log(e.data.data, 'oooooooooooooooo')
-              location.href = `/order_confirm/${e.data.data.receipt}`
-            }, 1000)
-            // e.data.data.billtype = "COD"
+      let billtype = $('input[type="radio"][name="paymentMethod"]:checked').val()
+      console.log(billtype, '.................payment type')
+      // location.href= `/bill/${address}`
+      try {
+        axios.post('/payment', { address, billtype })
+          .then((e) => {
 
-          } else {
-            console.log(e.data.data, 'datasasdasdasdas')
-            razorpayPayment(e.data.data)
-          }
-        })
-    } catch (error) {
-      console.log('errrorr ....axios', error)
+            console.log(billtype, "sujithppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp")
+            if (billtype == 'COD') {
+              swal({
+                text: "Your Order is Placed ...!",
+                icon: "success",
+                button: false,
+                // timer: 1000
+              })
+              setTimeout(() => {
+                console.log(e.data.data, 'oooooooooooooooo')
+                location.href = `/order_confirm/${e.data.data.receipt}`
+              }, 1000)
+              // e.data.data.billtype = "COD"
+
+            } else {
+              console.log(e.data.data, 'datasasdasdasdas')
+              razorpayPayment(e.data.data)
+            }
+          })
+      } catch (error) {
+        console.log('errrorr ....axios', error)
+      }
+    } else {
+      swal({
+        text: "Add any Address!",
+        icon: "warning",
+        button: false,
+        // timer: 1000
+      })
+
+      setTimeout(() => {
+        location.reload()
+      }, 1000)
+
     }
     //location.href= `/payment/${address._id}`
   }
@@ -526,7 +615,7 @@
             text: "Your Order is Placed ...!",
             icon: "success",
             button: false,
-           // timer: 1000
+            // timer: 1000
           })
 
           setTimeout(() => {
@@ -535,8 +624,8 @@
 
 
         } else {
-        //  alert('.........payment failed')
-           location.href = `/order_confirm/${order.receipt}`
+          //  alert('.........payment failed')
+          location.href = `/order_confirm/${order.receipt}`
         }
       })
     } catch (error) {
@@ -544,4 +633,49 @@
       location.href = `/order_confirm/${order.receipt}`
     }
   }
+</script>
+<script>
+  $().ready(function () {
+
+    $("#AddressForm").validate({
+      // in 'rules' user have to specify all the constraints for respective fields
+      rules: {
+
+        name: {
+          required: true,
+          minlength: 2 //for length of lastname
+        },
+        pin: {
+          required: true,
+          number: true,
+          minlength: 6,
+          maxlength: 6,
+        },
+        mobile: {
+          required: true,
+          number: true,
+          minlength: 10,
+          maxlength: 10,
+        }
+      },
+      // in 'messages' user have to specify message as per rules
+      messages: {
+        name: {
+          required: " Please enter Name",
+          minlength: " Your username must consist of at least 2 characters"
+        },
+        pin: {
+          required: " Please enter a pin number",
+          minlength: " Pin required 6 numbers",
+          maxlength: " Pin required 6 numbers",
+        },
+        mobile: {
+          required: " Please enter a phone number",
+          minlength: " phone required 10 numbers",
+          maxlength: " phone required 10 numbers",
+        },
+      }
+    });
+  });
+
 </script>

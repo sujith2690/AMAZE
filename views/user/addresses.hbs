@@ -3,7 +3,9 @@
     color: #1a202c;
     text-align: left;
   }
-
+.error{
+  color: red;
+}
   .main-body {
     padding: 15px;
   }
@@ -123,7 +125,7 @@
                         name="district">
                     </div>
                     <div class="col">
-                      <input type="text" style="text-transform: capitalize;" class="form-control" placeholder="PIN NO"
+                      <input type="number" style="text-transform: capitalize;" class="form-control" placeholder="PIN NO"
                         name="pin">
                     </div>
                   </div>
@@ -202,7 +204,7 @@
           </div>
           <div>
             <a class="btn btn" style="color: red;font-size: 35px;" href="/remove_address/{{this._id}}"
-              onclick=" sweetalertclick(event, '{{this.productId._id}}')">
+              onclick=" removeaddress(event, '{{this.productId._id}}')">
               <ion-icon name="trash-outline"></ion-icon>
             </a>
 
@@ -310,7 +312,7 @@
 <script>
   $().ready(function () {
 
-    $("#signupForm").validate({
+    $("#AddressForm").validate({
       // in 'rules' user have to specify all the constraints for respective fields
       rules: {
 
@@ -318,62 +320,43 @@
           required: true,
           minlength: 2 //for length of lastname
         },
-        password: {
+        pin: {
           required: true,
-          minlength: 3
-        },
-        confirm_password: {
-          required: true,
-          minlength: 3,
-          equalTo: "#password" //for checking both passwords are same or not
-        },
-        email: {
-          required: true,
-          email: true
+          number: true,
+          minlength: 6,
+          maxlength: 6,
         },
         mobile: {
           required: true,
           number: true,
           minlength: 10,
           maxlength: 10,
-
         }
-
       },
       // in 'messages' user have to specify message as per rules
       messages: {
-
-        username: {
-          required: " Please enter a username",
+        name: {
+          required: " Please enter Name",
           minlength: " Your username must consist of at least 2 characters"
         },
-        password: {
-          required: " Please enter a password",
-          minlength: " Your password must be consist of at least 3 characters"
-        },
-        confirm_password: {
-          required: " Please enter a password",
-          minlength: " Your password must be consist of at least 3 characters",
-          equalTo: " Please enter the same password as above"
+        pin: {
+          required: " Please enter a pin number",
+          minlength: " Pin required 6 numbers",
+          maxlength: " Pin required 6 numbers",
         },
         mobile: {
           required: " Please enter a phone number",
-          minlength: " phone number must be of 10 numbers",
-          maxlength: " phone number must be of 10 numbers",
-        }
-
+          minlength: " phone required 10 numbers",
+          maxlength: " phone required 10 numbers",
+        },
       }
     });
   });
 
 </script>
 
-
-
-
-
 <script>
-  function sweetalertclick(ev, id) {
+  function removeaddress(ev, id) {
     ev.preventDefault();
     var url = ev.currentTarget.getAttribute('href')
     swal({

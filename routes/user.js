@@ -86,20 +86,23 @@ router.get('/', usermiddleware.isblocked, function (req, res, next) {
 router.get('/error', (req, res) => {
   res.render('user/404error');
 })
-//...........................................................//
 
-// ............................................................................. user login..................//
+
+// ..............................U S E R     L O G I N ..................//
 
 router.get('/login', (req, res) => {
   if (req.session.loggedin) {
-    res.redirect('/')
+    if (req.session.isblocked) {
+      res.render('user/login', { blocked: req.session.isblocked })
+      req.session.destroy()
+    } else {
+      res.redirect('/')
+    }
   } else {
-
-    res.render('user/user_login');
+    let logginerror = req.session.logginerror
+    res.render('user/user_login', { logginerror });
   }
-
 });
-
 //.......................................................................... session distroy.... logout......//
 
 router.get('/logout', (req, res) => {
@@ -112,45 +115,32 @@ router.get('/logout', (req, res) => {
 
 router.post('/login', (req, res, next) => {
   user_controller.userlogin(req.body).then((response) => {
-
     req.session.email = response.email;
-    //console.log(req.body);
-
     if (response.status) {
-
       req.session.loggedin = true
       req.session.user = response.user
-
-      let user = req.session.user
+      // let user = req.session.user
       // console.log(user,'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj');
-      // console.log("login success");
+      console.log("login success");
       res.redirect('/')
-
     }
     else if (response.usernotfound) {
-
       req.session.logginerror = true
-
       console.log("user not found");
       res.redirect('/login')
     }
     else {
       console.log("user login failed");
-
       res.redirect('/login')
     }
   })
 });
 
 //.........user signup............//
-
-
 router.get('/signup', function (req, res, next) {
   res.render('user/user_signup', { exist: req.session.exist })
   req.session.exist = false
-
 })
-
 router.post('/otp', async (req, res) => {
 
   try {
@@ -174,16 +164,9 @@ router.post('/otp', async (req, res) => {
     console.log(error);
   }
 })
-
-//.................................................................................otp.. ....verify.....//
-
-// router.get('/otpverify', (req, res) => {
-//   res.render('user/user_otp')
-// })
+//..........................O T P      V E R I F Y.............//
 router.post('/otpverify', async (req, res, next) => {
-  console.log('lkjljlkj');
   console.log(req.session.data, '-----------user details');
-
   twilio_controller.checkOut(req.body, req.session.data).then(async (response) => {
     console.log(response, '-----------response');
     if (response == 'approved') {
@@ -192,41 +175,34 @@ router.post('/otpverify', async (req, res, next) => {
       req.session.loggedin = true;
       console.log(req.session.data, '-----------12  response data');
       console.log(req.body, '-----------response data');
-
       try {
         await usermodel.create(req.session.data).then((user) => {
           req.session.user = user
           console.log(user, '---    otp user')
         })
-
         console.log('---55--')
         req.session.email = req.session.data.email
         res.redirect('/')
         console.log('---55--')
-
       } catch (error) {
         next(error)
-
       }
     } else {
       res.render('user/user_otp')
     }
   })
 })
-//....................................................................................profile..........................//
+
+//...........................................P R O F I L E ...............................//
 
 router.get('/profile', VerifyLogin, (req, res) => {
 
   user = req.session.user._id
-
-  //console.log(userDetails, 'userj');
   coupon_controller.getcoupen().then((coupons) => {
     address_controller.getAddress(user).then((address) => {
-
       console.log(userDetails, 'hhhhhhhhhhhhhhhhhhhhhh');
       res.render('user/profile', { user: true, loggedin: true, userDetails, coupons, count, address })
     })
-
   })
 })
 router.post('/updateuser', (req, res) => {
@@ -244,14 +220,13 @@ router.post('/updateuser', (req, res) => {
   }
 
 })
-
-
 router.post('/add_address', (req, res) => {
   let userId = req.session.user._id
+  console.log(req.body, '----------address body');
   console.log(req.session.user._id, 'uuuuuuuuuuuuuddddddddd');
   address_controller.addAddress(req.body, userId).then((response) => {
     console.log(response, 'kkkkkkkkkkkkkkkk');
-    res.redirect('/profile')
+    res.redirect('/addresses')
   })
 })
 
@@ -260,7 +235,7 @@ router.get('/addresses', VerifyLogin, (req, res) => {
   let userId = req.session.user._id
   address_controller.getAddress(userId).then((address) => {
     // console.log(address, 'asasasasasasas')
-    res.render('user/addresses', { user: true, loggedin: true, address })
+    res.render('user/addresses', { user: true, loggedin: true, address, userDetails, count })
   })
 })
 
@@ -269,7 +244,7 @@ router.get('/remove_address/:id', (req, res) => {
   const userid = req.session.user._id
   // console.log(addressid, 'userrrrrrrrrrrrrrrrrrr');
   address_controller.removeAddresss(userid, addressid).then((response) => {
-    res.redirect('/profile_address')
+    res.redirect('/addresses')
   })
 })
 router.post('/update_address/:id', (req, res) => {
@@ -286,28 +261,21 @@ router.post('/update_address/:id', (req, res) => {
 
 })
 //////////////////////////////.......orders........//////////////////////////////////////////////
-
-
 router.get('/orders', VerifyLogin, (req, res) => {
   console.log('....orderrrrrrrrrrrr');
   let userId = req.session.user._id
   order_controller.myOrders(userId).then((orders) => {
     console.log(orders, '----------oooooooooooooorrrr')
-
-
     // console.log(address, 'asasasasasasas')
     res.render('user/orders', { user: true, loggedin: true, orders, count, userDetails })
-
   })
 })
-
 router.post('/cancelorder/:_id', (req, res) => {
   console.log(req.params._id, '---------22222222222')
   order_controller.cancelOrder(req.params._id).then((response) => {
     res.json(response)
   })
 })
-
 router.get('/view_Order/:_id', VerifyLogin, (req, res) => {
   order_controller.getTrack(req.params._id).then((orderItemsDetails) => {
     console.log(orderItemsDetails._id, '------------44444444444')
@@ -329,21 +297,7 @@ router.get('/invoice/:_id', VerifyLogin, (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-//.......................................................................shop...................................//
-
+//...............................................S H O P..................................//
 
 router.get('/shop', (req, res) => {
   if (req.session.loggedin) {
@@ -372,8 +326,6 @@ router.get('/shop', (req, res) => {
 
 })
 // ...................
-
-
 router.get('/shop/:_id', (req, res) => {
   if (req.session.loggedin) {
     user = req.session.user
@@ -381,8 +333,6 @@ router.get('/shop/:_id', (req, res) => {
       product_controller.getByCategory(req.params._id).then((getByCategory) => {
         console.log(getByCategory, 'shop by categoryyyyyyyyyyyyyyyy');
         res.render('user/shop_by_category', { category, getByCategory, user: true, loggedin: true, userDetails })
-
-
       })
     })
   }
@@ -405,24 +355,21 @@ router.get('/wish_count', (req, res) => {
     })
   }
 })
-
 //..............................................................product view...........................//
-
-
-router.get('/singleproduct/:id', (req, res,) => {
+router.get('/singleproduct/:id', (req, res,next) => {
   let productID = req.params.id
+  console.log(productID,'---------------------55');
   product_controller.getPoductvalue(productID).then((productdata) => {
     const eachProduct = productdata.data;
     if (req.session.user) {
       user = req.session.user
       console.log(productdata, 'jjjjjjjjjjjjjjjjjj');
       res.render('user/single_product', { user: true, loggedin: true, userDetails, count, eachProduct })
-    }else{
-
+    } else {
       res.render('user/single_product', { user: true, userDetails, count, eachProduct })
     }
-
-
+  }).catch((err)=>{
+    next(err)
   })
 })
 
@@ -430,13 +377,10 @@ router.get('/singleproduct/:id', (req, res,) => {
 //. /////////////////////////////////////////.....cart..////////////////////////////////////....//
 
 router.get('/cart', VerifyLogin, (req, res) => {
-
   user = req.session.user
-
   cart_controller.getProductDetails(user._id).then((productdetails) => {
     let emptyCart = productdetails.cartempty
     cart_controller.totalAmount(user._id, productdetails).then((products) => {
-
       if (!emptyCart) {
         var DatasCart = productdetails.cart.cartdata
       }
@@ -504,7 +448,6 @@ router.post('/add_address_checkout', (req, res) => {
   let userId = req.session.user._id
   // console.log(req.session.user._id, 'uuuuuuuuuuuuuddddddddd');
   address_controller.addAddress(req.body, userId).then((response) => {
-    // console.log(response, 'kkkkkkkkkkkkkkkk');
     res.redirect('/checkout')
   })
 })
@@ -514,19 +457,19 @@ router.get('/checkout', VerifyLogin, (req, res) => {
   user = req.session.user
 
   address_controller.getAddress(user._id).then((address) => {
-    //console.log(address, 'addadaddaddad')
+    console.log(address, '-addadaddaddad')
     cart_controller.getProductDetails(user._id).then((productdetails) => {
+      let emptyCart = productdetails.cartempty
+      if (emptyCart) {
+        res.render('user/checkout', { loggedin: true,emptyCart, user,userDetails})
+      }
       let DatasCart = productdetails.cart.cartdata
       cart_controller.totalAmount(user._id, productdetails).then((products) => {
         console.log(products, '-----------checkout............');
-        res.render('user/checkout', { loggedin: true, user, DatasCart, userDetails, address, products })
-
-
+        res.render('user/checkout', {user:true,loggedin: true, DatasCart, userDetails, address, products,count})
       })
     })
   })
-
-
 })
 
 
@@ -629,17 +572,17 @@ router.post('/payment', VerifyLogin, (req, res) => {
           }
         }
 
-       
+
       })
     })
   })
 
 })
-router.post('/verifyPayment', VerifyLogin, (req, res,next) => {
-   console.log(req.body, '1111111111111111......')
+router.post('/verifyPayment', VerifyLogin, (req, res, next) => {
+  console.log(req.body, '1111111111111111......')
   payment_controller.verifyPayment(req.body).then((response) => {
     res.json({ status: true })
-  }).catch((err)=>{
+  }).catch((err) => {
     next()
   })
 })
