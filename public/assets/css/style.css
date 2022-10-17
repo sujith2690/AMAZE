@@ -967,7 +967,7 @@ section {
 --------------------------------------------------------------*/
 
 .portfolio{
-  padding: 80px;
+  padding: 80px 0px;
 }
 .portfolio #portfolio-flters {
   list-style: none;

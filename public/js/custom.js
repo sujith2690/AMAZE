@@ -20,7 +20,7 @@ async function addtoWishlist(proId) {
     })
 }
 async function addtoCart(proId) {
-    console.log(proId, '------------cart axios l')
+    console.log(proId, '------------cart axios with product id')
     await axios.get(`/add_to_cart/${proId}`, {}).then((e) => {
         swal({
             title: "Item Add to Cart!",
@@ -29,11 +29,11 @@ async function addtoCart(proId) {
             timer: 1000,
             width: '25em'
         });
-        console.log("else of script cart")
+        console.log("---------add to cart axios cart")
         setTimeout(() => {
-            //location.reload()
+           
             $("#cart").load(location.href + " #cart>*", "")
-            //$("#wish").load(location.href + "#wish")
+            
         }, 60)
     })
 }
@@ -74,36 +74,6 @@ async function incQty(proId) {
 
 
 
-
-// const decQty = (id) => {
-//     console.log(id, 'oooooooooooooooooooo')
-//     const res = axios.post(`/decQty/` + id).then((e) => {
-//         window.location.reload()
-//         if (e.data.status) {
-//             document.getElementById(id).value = e.data.qty
-//         }
-//         window.location.reload()
-
-
-//     })
-// }
-// const incQty = (id) => {
-//     const res = axios.post('/incQty/' + id).then((e) => {
-//         if (e.data.qty > 1) {
-//             if (e.data.status) {
-//                 document.getElementById(id).value = e.data.qty
-//             }
-//             location.reload()
-//         }
-//         if (e.data.qty == 2) {
-//             if (e.data.status) {
-//                 document.getElementById(id).value = e.data.qty
-//             }
-//             window.location.reload()
-//         }
-
-//     })
-// }
 
 
 function remove(ev, id) {

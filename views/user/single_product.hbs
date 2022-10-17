@@ -4,8 +4,8 @@
     <div class="container pb-5">
         <div class="row">
             <div class="col-lg-4 mt-2">
-                <div class="card mb-3 img-hover-zoom img-hover-zoom--xyz">
-                    <img class="card-img img-fluid" style="" src="/productimages/{{eachProduct.image.[0]}}"
+                <div class="card mb-3 img-hover-zoom img-hover-zoom--xyz mx-5">
+                    <img class="card-img img-fluid " style="" src="/productimages/{{eachProduct.image.[0]}}"
                         alt="Card image cap" id="product-detail">
                 </div>
                 <div class="row">
@@ -27,19 +27,19 @@
                             <div class="carousel-item active">
                                 <div class="row">
                                     <div class="col-4">
-                                        <a href="#">
+                                        <a style="cursor: pointer;">
                                             <img class="card-img img-fluid"
                                                 src="/productimages/{{eachProduct.image.[1]}}" alt="Product Image 1">
                                         </a>
                                     </div>
                                     <div class="col-4">
-                                        <a href="#">
+                                        <a style="cursor: pointer;">
                                             <img class="card-img img-fluid"
                                                 src="/productimages/{{eachProduct.image.[2]}}" alt="Product Image 2">
                                         </a>
                                     </div>
                                     <div class="col-4">
-                                        <a href="#">
+                                        <a style="cursor: pointer;">
                                             <img class="card-img img-fluid"
                                                 src="/productimages/{{eachProduct.image.[0]}}" alt="Product Image 3">
                                         </a>
@@ -52,19 +52,19 @@
                             <div class="carousel-item">
                                 <div class="row">
                                     <div class="col-4">
-                                        <a href="#">
+                                        <a style="cursor: pointer;">
                                             <img class="card-img img-fluid"
                                                 src="/productimages/{{eachProduct.image.[0]}}" alt="Product Image 4">
                                         </a>
                                     </div>
                                     <div class="col-4">
-                                        <a href="#">
+                                        <a style="cursor: pointer;">
                                             <img class="card-img img-fluid"
                                                 src="/productimages/{{eachProduct.image.[2]}}" alt="Product Image 5">
                                         </a>
                                     </div>
                                     <div class="col-4">
-                                        <a href="#">
+                                        <a style="cursor: pointer;">
                                             <img class="card-img img-fluid"
                                                 src="/productimages/{{eachProduct.image.[1]}}" alt="Product Image 6">
                                         </a>
@@ -77,19 +77,19 @@
                             <div class="carousel-item">
                                 <div class="row">
                                     <div class="col-4">
-                                        <a href="#">
+                                        <a style="cursor: pointer;">
                                             <img class="card-img img-fluid"
                                                 src="/productimages/{{eachProduct.image.[1]}}" alt="Product Image 7">
                                         </a>
                                     </div>
                                     <div class="col-4">
-                                        <a href="#">
+                                        <a style="cursor: pointer;">
                                             <img class="card-img img-fluid"
                                                 src="/productimages/{{eachProduct.image.[0]}}" alt="Product Image 8">
                                         </a>
                                     </div>
                                     <div class="col-4">
-                                        <a href="#">
+                                        <a style="cursor: pointer;">
                                             <img class="card-img img-fluid"
                                                 src="/productimages/{{eachProduct.image.[2]}}" alt="Product Image 9">
                                         </a>
@@ -166,12 +166,12 @@
                         <div class="row pb-3">
                             <div class="col d-grid">
                                 <button type="submit" class="btn btn-primary btn-lg"
-                                    onclick="addtoWishlist('{{eachProduct._id}}')" value="buy">Add to
+                                    onclick="addtoWishlist('{{eachProduct._id}}')">Add to
                                     Wishlist <ion-icon name="heart-outline"></ion-icon></button>
                             </div>
                             <div class="col d-grid">
                                 <a class="btn btn-outline-info btn-lg w-100" onclick="addtoCart('{{eachProduct._id}}')"
-                                    type="submit" href="#">Add to Cart
+                                    type="submit" style="cursor: pointer;">Add to Cart
                                     <ion-icon name="cart-outline"></ion-icon></button>
                                 </a>
 
@@ -187,25 +187,6 @@
     </div>
 </section>
 <!-- Close Content -->
-
-{{!-- ...............add to wishlist.............. --}}
-
-{{!-- ...............add to wishlist.............. --}}
-<script>
-    async function addtoCart(proId) {
-        console.log(proId, 'lkkkkkkkkkkkkkkkkk')
-        await axios.get(`/add_to_cart/${proId}`, {}).then((e) => {
-            swal("Item Add to Cart!", "", "success");
-            console.log("else of script cart")
-            window.location.reload
-        })
-    }
-</script>
-
-
-
-
-
 
 <!-- Start Slider Script -->
 <script src="assets/js/slick.min.js"></script>

@@ -46,12 +46,6 @@ const VerifyLogin = (req, res, next) => {
   }
 }
 
-
-
-
-
-
-
 router.get('/', usermiddleware.isblocked, function (req, res, next) {
   banner_controller.getbannerdata().then((bannerDetails) => {
     product_controller.getlatestProductDetails().then((latest) => {
@@ -164,6 +158,7 @@ router.post('/otp', async (req, res) => {
     console.log(error);
   }
 })
+
 //..........................O T P      V E R I F Y.............//
 router.post('/otpverify', async (req, res, next) => {
   console.log(req.session.data, '-----------user details');
@@ -473,28 +468,6 @@ router.get('/checkout', VerifyLogin, (req, res) => {
 })
 
 
-//........./////////////////.................Payment Methods..................////////////............................//
-// router.get('/payment/:id', VerifyLogin, (req, res) => {
-//   user = req.session.user
-//   address = req.params.id
-//   // console.log(address, 'this is address id ')
-//   // console.log(req.body, 'post shiping address')
-
-//   address_controller.getAddressData(user._id, address).then((address) => {
-//       console.log(address, '----------dataas------sa')
-//     cart_controller.getProductDetails(user._id).then((productdetails) => {
-//       let DatasCart = productdetails.cart.cartdata
-//       cart_controller.totalAmount(user._id, productdetails).then((products) => {
-//         res.render('user/payment', { DatasCart, userDetails, address, products })
-//         //   console.log('payment............');
-//         res.json(e)
-
-//       })
-//     })
-
-//   })
-
-// })
 
 //////////.....................Apply Coupon...../////////////////////////////
 
