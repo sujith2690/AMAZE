@@ -41,13 +41,13 @@
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" style="cursor: pointer;" role="button" data-bs-toggle="dropdown"
           aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" href="#!">Settings</a></li>
-          <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+          <li><a class="dropdown-item" style="cursor: pointer;">Settings</a></li>
+          <li><a class="dropdown-item" style="cursor: pointer;">Activity Log</a></li>
           <li>
-            <hr class="dropdown-divider" />
+            <hr class="dropdown-divider">
           </li>
           <li><a class="dropdown-item" href="/admin/admin_login">Logout</a></li>
         </ul>
@@ -59,8 +59,8 @@
       <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
           <div class="nav">
-            <div class="sb-sidenav-menu-heading">Core</div>
-            <a class="nav-link" href="/admin/admin_home">
+            {{!-- <div class="sb-sidenav-menu-heading"></div> --}}
+            <a class="nav-link mt-4"  href="/admin/admin_home">
               <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
               </div>
               Dashboard
@@ -71,19 +71,12 @@
               Banners
 
             </a>
-            <div class="sb-sidenav-menu-heading">Addons</div>
-            <a class="nav-link" href="/admin/coupon">
+            {{!-- <div class="sb-sidenav-menu-heading">Addons</div> --}}
+            <a class="nav-link mt-4" href="/admin/coupon">
               <div class="sb-nav-link-icon"><i class="fas fa-gift"></i></div>
               Coupons
             </a>
-            <a class="nav-link" href="/admin/charts">
-              <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-              Charts
-            </a>
-            <a class="nav-link" href="#">
-              <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-              Tables
-            </a>
+            
             <a class="nav-link" href="/admin/edit_users">
               <div class="sb-nav-link-icon"><i class="fa-regular fa-user"></i></div>
               Users
@@ -99,6 +92,10 @@
             <a class="nav-link" href="/admin/orders">
               <div class="sb-nav-link-icon"><i class="fa-solid fa-person-biking"></i></div>
               Orders
+            </a>
+             <a class="nav-link" href="/admin/charts">
+              <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+              Charts
             </a>
           </div>
         </div>
@@ -119,9 +116,9 @@
           <div class="d-flex align-items-center justify-content-between small">
             <div class="text-muted">Copyright &copy; Your Website 2022</div>
             <div>
-              <a href="#">Privacy Policy</a>
+              <a style="cursor: pointer;">Privacy Policy</a>
               &middot;
-              <a href="#">Terms &amp; Conditions</a>
+              <a style="cursor: pointer;">Terms &amp; Conditions</a>
             </div>
           </div>
         </div>

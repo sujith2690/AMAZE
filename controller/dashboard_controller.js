@@ -15,7 +15,7 @@ module.exports = {
         let UserCount = users.length
         console.log(UserCount, '------------------88888888888')
         response.UserCount = UserCount
-        //resolve(response)
+
         await order_model.find({}).lean().then(async (orders) => {
           let OrderCount = orders.length
           response.OrderCount = OrderCount
@@ -25,14 +25,14 @@ module.exports = {
           }, 0)
 
           response.totalRevenue = TotalRevenue
-          //console.log(orders, '------------------55555555555')
+
           console.log(orders, '--------------totalRevenue 00000000000000')
 
           var today = new Date()
           var newdate = today.toISOString()
           newdate = newdate.slice(0, 10);
           await order_model.find({ date: newdate }).populate('orderitems').lean().then(async (today) => {
-            
+
             let TodayRevenue = today.reduce((accumulator, object) => {
               return accumulator + object.grandtotalamount
             }, 0)
@@ -49,49 +49,25 @@ module.exports = {
                 await order_model.find({ productStatus: "Cancelled" }).lean().then(async (cancelled) => {
                   let CancelledCount = cancelled.length
                   response.CancelledCount = CancelledCount
-
-                  await product_model.find().lean().then(async (products) => {
-                    let ProductCount = products.length
-                    response.ProductCount = ProductCount
-                    // console.log(ProductCount, '------------------55555555555')
-
-
-                   // resolve(response)
-
-
-
+                  await order_model.find({ productStatus: "Shipped" }).lean().then(async (Shipped) => {
+                    let ShippedCount = Shipped.length
+                    response.ShippedCount = ShippedCount
+                    await order_model.find({ productStatus: "Pending" }).lean().then(async (Pending) => {
+                      let PendingCount = Pending.length
+                      response.PendingCount = PendingCount
+                      await order_model.find({ productStatus: "Delivered" }).lean().then(async (Delivered) => {
+                        let DeliveredCount = Delivered.length
+                        response.DeliveredCount = DeliveredCount
 
 
-                    // var dateArray = []
-                    // for (let i = 0; i < 5; i++) {
-                    //   var d = new Date();
-                    //   d.setDate(d.getDate() - i)
-                    //   var newdate = d.toISOString()
-                    //   // console.log(new Date());
-                    //   newdate = newdate.slice(0, 10)
-                    //   dateArray[i] = newdate
-                    // }
-                    // console.log(dateArray, newdate, 'jkjhkjhkjhkjh');
-                    // // var Date = new Date()    
+                        await product_model.find().lean().then(async (products) => {
+                          let ProductCount = products.length
+                          response.ProductCount = ProductCount
 
-                    // var dateSale = []
-                    // // var date = new Date() 
-                    // for (i = 0; i < 5; i++) {
-                    //   // dateSale[i] = await ordermodel.find({newdate:dateArray[i]}).lean().count()
-                    //   dateSale[i] = await order_model.find({ date: dateArray[i] }).lean().count()
-                    //   console.log(dateSale[i], "dateeeeeee");
-                    // }
-                    // let status = {
-                    //   dateSale: dateSale,
-                    //   dateArray: dateArray
-                    // }
-                    // response.status = status
-                    resolve(response)
-
-                    //console.log(status, '---------------------54545454554')
-
-
-
+                          resolve(response)
+                        })
+                      })
+                    })
                   })
                 })
               })
@@ -103,36 +79,36 @@ module.exports = {
   },
 
 
-  stati:()=>{
-    return new Promise(async(resovle,reject)=>{
-      try{
+  stati: () => {
+    return new Promise(async (resovle, reject) => {
+      try {
 
-        var dateArray =[]
-        for(let i = 0;i<5;i++){
-            var d = new Date();
-            d.setDate(d.getDate()-i)
-            var newdate = d.toISOString()
-            // console.log(new Date());
-            newdate = newdate.slice(0,10)
-            dateArray[i] = newdate
+        var dateArray = []
+        for (let i = 0; i < 5; i++) {
+          var d = new Date();
+          d.setDate(d.getDate() - i)
+          var newdate = d.toISOString()
+          // console.log(new Date());
+          newdate = newdate.slice(0, 10)
+          dateArray[i] = newdate
         }
-        console.log(dateArray,newdate,'jkjhkjhkjhkjh');
+        console.log(dateArray, newdate, 'jkjhkjhkjhkjh');
         // var Date = new Date()    
 
-        var dateSale =[]
+        var dateSale = []
         // var date = new Date() 
-        for(i = 0; i <5; i++){
-            // dateSale[i] = await ordermodel.find({newdate:dateArray[i]}).lean().count()
-            dateSale[i] = await order_model.find({date:dateArray[i]}).lean().count()
-            console.log(   dateSale[i] ,"dateeeeeee");
+        for (i = 0; i < 5; i++) {
+          // dateSale[i] = await ordermodel.find({newdate:dateArray[i]}).lean().count()
+          dateSale[i] = await order_model.find({ date: dateArray[i] }).lean().count()
+          console.log(dateSale[i], "dateeeeeee");
         }
         var status = {
-            dateSale:dateSale,
-            dateArray:dateArray
+          dateSale: dateSale,
+          dateArray: dateArray
         }
         resovle(status)
-        } catch(error){
-            console.log("error",error);
+      } catch (error) {
+        console.log("error", error);
       }
     })
   },

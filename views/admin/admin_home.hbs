@@ -1,8 +1,6 @@
 <div class="container-fluid px-4">
   <h1 class="mt-4">Dashboard</h1>
-  <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Dashboard</li>
-  </ol>
+ 
   <div class="row mb-4" style="text-align: center;">
     <div class="col-sm-6 col-xl-3 mb-2">
       <div class="bg-dark text-white rounded d-flex align-items-center justify-content-between p-4">
@@ -155,71 +153,6 @@
       </div>
     </div>
   </div>
-
-  <div class="card mb-4">
-    <div class="card-header">
-      <i class="fas fa-table me-1"></i>
-      DataTable Example
-    </div>
-    <div class="card-body">
-      <table id="datatablesSimple">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Salary</th>
-          </tr>
-        </thead>
-        <tfoot>
-          <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Salary</th>
-          </tr>
-        </tfoot>
-        <tbody>
-          <tr>
-            <td>Tiger Nixon</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-            <td>$320,800</td>
-          </tr>
-          <tr>
-            <td>Rhona Davidson</td>
-            <td>Integration Specialist</td>
-            <td>Tokyo</td>
-            <td>55</td>
-            <td>2010/10/14</td>
-            <td>$327,900</td>
-          </tr>
-          <tr>
-            <td>Colleen Hurst</td>
-            <td>Javascript Developer</td>
-            <td>San Francisco</td>
-            <td>39</td>
-            <td>2009/09/15</td>
-            <td>$205,500</td>
-          </tr>
-          <tr>
-            <td>Sonya Frost</td>
-            <td>Software Engineer</td>
-            <td>Edinburgh</td>
-            <td>23</td>
-            <td>2008/12/13</td>
-            <td>$103,600</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
 </div>
 
 
@@ -234,12 +167,11 @@
       var xValues = [response.data.status.dateArray[0], response.data.status.dateArray[1], response.data.status.dateArray[2], response.data.status.dateArray[3], response.data.status.dateArray[4]];
       var yValues = [response.data.status.dateSale[0], response.data.status.dateSale[1], response.data.status.dateSale[2], response.data.status.dateSale[3], response.data.status.dateSale[4]];
       var barColors = [
-        'rgba(255, 99, 132, 0.5)',
-        'rgba(54, 162, 235, 0.5)',
-        'rgba(255, 206, 86, 0.5)',
-        'rgba(75, 192, 192, 0.5)',
-        'rgba(153, 102, 255, 0.5)',
-
+        'blue',
+        'green',
+        'yellow',
+        'orange',
+        'red',
       ];
 
       new Chart("myChart", {
@@ -272,13 +204,14 @@
       method: 'get'
     }).then((response) => {
       console.log(response, "response is here")
-      var xValues = ["Orders", "Cancelled", "Prodcts", "Onlinepay"];
-      var yValues = [{{ response.OrderCount }}, {{ response.CancelledCount }}, {{ response.ProductCount }}, {{ response.OnlineCount }}];
+      var xValues = ["Orders", "Cancelled", "Shipped", "Pending", "Delivered"];
+      var yValues = [{{ response.OrderCount }}, {{ response.CancelledCount }}, {{ response.ShippedCount }}, {{ response.PendingCount }}, {{ response.DeliveredCount }}];
   var barColors = [
-    "#198754",
-    "#FF0C1B",
-    "#2b5797",
-    "#e8c3b9",
+    'green',
+    'red',
+    'yellow',
+    'orange',
+    'blue,'
   ];
 
   new Chart("mypieChart", {
@@ -315,18 +248,21 @@
         type: "line",
         data: {
           labels: xValues,
+
           datasets: [{
             fill: false,
             lineTension: 0,
             backgroundColor: "rgba(0,0,255,1.0)",
             borderColor: "rgba(0,0,255,2.1)",
-            data: yValues
+            data: yValues,
+
           }]
         },
         options: {
           legend: { display: false },
-          scales: {
-            yAxes: [{ ticks: { min: 6, max: 16 } }],
+          title: {
+            display: true,
+            text: "Order System"
           }
         }
       })

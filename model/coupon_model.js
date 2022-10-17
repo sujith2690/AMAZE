@@ -24,7 +24,8 @@ const CoupenSchema = new mongoose.Schema({
     type: 'String'
   }
 
-})
+},{ timestamps: true }
+)
 const coupenmodel = mongoose.model('coupon', CoupenSchema)
 
 module.exports = coupenmodel

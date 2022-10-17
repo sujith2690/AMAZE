@@ -10,7 +10,7 @@
 
 
   <!-- Button trigger modal -->
-  <a type="button" class="btn btn-outline-primary mb-2" data-bs-target="#exampleModalss" data-bs-toggle="modal">
+  <a type="button" class="btn btn-outline-primary mb-2" style="align-items: end;" data-bs-target="#exampleModalss" data-bs-toggle="modal">
     Add Coupen
   </a>
 
@@ -85,7 +85,7 @@
         <thead>
 
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">NO</th>
             <th scope="col">Coupon Name</th>
             <th scope="col">Coupon Code</th>
             <th scope="col">Discount Price</th>
@@ -97,7 +97,7 @@
         </thead>
         <tfoot>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">NO</th>
             <th scope="col">Coupon Name</th>
             <th scope="col">Coupon Code</th>
             <th scope="col">Discount Price</th>
@@ -110,14 +110,14 @@
         <tbody>
           {{#each coupons}}
           <tr>
-            <th scope="row">{{@index}}</th>
+            <th scope="row">{{count @index}}</th>
 
             <td class="text-center">{{this.Couponname}}</td>
             <td class="text-center">{{this.Couponcode}}</td>
             <td class="text-center">{{this.Discountprice}}</td>
             <td class="text-center">{{this.Discountpricelimit}}</td>
             <td class="text-center">{{this.Couponlimit}}</td>
-            <td>{{this.Date}}</td>
+            <td>{{format this.createdAt}}</td>
 
 
             <td style="color: green;">
