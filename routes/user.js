@@ -147,8 +147,6 @@ router.post('/otp', async (req, res) => {
     } else {
       const newUser = new usermodel(req.body)
       console.log(newUser, '--------hai');
-
-      
       twilio_controller.getOtp(newUser.mobile)
       req.session.data = newUser
       res.render('user/user_otp')
