@@ -249,11 +249,16 @@ router.post('/update_address/:id', (req, res) => {
     let addressid = req.params.id
 
     address_controller.updateAddress(addressid, addressDetails).then((response) => {
-      res.redirect('/profile_address')
+      res.redirect('/addresses')
 
     })
   }
-
+})
+router.get('/coupons',VerifyLogin,(req,res)=>{
+  coupon_controller.getcoupen().then((coupons)=>{
+console.log(coupons,'-------------coupons');
+    res.render('user/coupons',{ user: true, loggedin: true,count,coupons, userDetails })
+  })
 })
 //////////////////////////////.......orders........//////////////////////////////////////////////
 router.get('/orders', VerifyLogin, (req, res) => {

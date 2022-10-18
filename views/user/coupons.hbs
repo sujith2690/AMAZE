@@ -1,0 +1,40 @@
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="container">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/profile">Profile</a></li>
+      <li>Coupons</li>
+    </ol>
+  </div>
+</section><!-- End Breadcrumbs -->
+<section id="team" class="team section-bg">
+  <div class="container">
+
+    <div class="row">
+      {{#each coupons}}
+      <div class="col-lg-6 mt-4">
+        <div class="member d-flex  justify-content-around">
+          <div style="font-size: 35px; color: red;">
+            <i class="bi bi-gift"></i>
+          </div>
+          <div class="member-info">
+            <div class="row">
+              <div class="">
+
+                <ul style="list-style-type: none;" class="pl-1">
+                  <li>{{this.Couponname}}</li>
+                  <li>Price Limit <mark><b>{{this.Discountpricelimit}}</b></mark> DIscount
+                    <mark><b>{{this.Discountprice}}</b></mark> </li>
+                  <li><b>{{this.Couponcode}}</b></li>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</section><!-- End Team Section -->

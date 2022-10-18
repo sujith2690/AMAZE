@@ -1130,6 +1130,10 @@ section {
 /*--------------------------------------------------------------
 # Team
 --------------------------------------------------------------*/
+.team{
+
+  background: #013741ce;
+}
 .team .member {
   position: relative;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
@@ -1639,7 +1643,7 @@ section {
 --------------------------------------------------------------*/
 .breadcrumbs {
   padding: 15px 0;
-  background: #f3f5fa;
+  background: #013741ce;
   min-height: 40px;
   margin-top: 72px;
 }
@@ -1657,6 +1661,7 @@ section {
 }
 
 .breadcrumbs ol {
+  color: #fff;
   display: flex;
   flex-wrap: wrap;
   list-style: none;
