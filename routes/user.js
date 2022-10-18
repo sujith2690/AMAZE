@@ -337,24 +337,7 @@ router.get('/shop/:_id', (req, res) => {
     })
   }
 })
-///////////////.............................................................count..................///////
-router.get('/cart_count', (req, res) => {
-  if (req.session.loggedin) {
 
-    cart_controller.totalItems(req.session.user._id).then((items) => {
-      res.json({ items })
-
-    })
-  }
-})
-router.get('/wish_count', (req, res) => {
-  if (req.session.loggedin) {
-    wishlist_controller.totalItems(req.session.user._id).then((item) => {
-      res.json({ item })
-
-    })
-  }
-})
 //..............................................................product view...........................//
 router.get('/singleproduct/:id', (req, res,next) => {
   let productID = req.params.id

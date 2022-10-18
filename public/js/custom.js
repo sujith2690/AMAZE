@@ -11,11 +11,10 @@ async function addtoWishlist(proId) {
             timer: 1000,
             width: '25em'
         });
-        console.log("else of script wishlist")
+        console.log("------Add to  wishlist")
         setTimeout(() => {
-            //location.reload()
+            
             $("#wish").load(location.href + " #wish>*", "")
-            //$("#wish").load(location.href + "#wish")
         }, 60)
     })
 }
@@ -31,9 +30,7 @@ async function addtoCart(proId) {
         });
         console.log("---------add to cart axios cart")
         setTimeout(() => {
-           
             $("#cart").load(location.href + " #cart>*", "")
-            
         }, 60)
     })
 }
@@ -48,11 +45,9 @@ async function decQty(proId) {
         if (e.data.status) {
             document.getElementById(proId).value = e.data.qty
         }
-        console.log("else of script cart")
+        console.log("----------d qty cart")
 
-        //location.reload()
         $("#quantity").load(location.href + " #quantity>*", "")
-        //$("#wish").load(location.href + "#wish")
 
     })
 }
@@ -63,11 +58,9 @@ async function incQty(proId) {
         if (e.data.status) {
             document.getElementById(proId).value = e.data.qty
         }
-        console.log("else of script cart")
+        console.log("------------ i qty cart")
 
-        //location.reload()
         $("#quantity").load(location.href + " #quantity>*", "")
-        //$("#wish").load(location.href + "#wish")
 
     })
 }
@@ -116,23 +109,23 @@ function remove(ev, id) {
 }
 
 
-const count = async () => {
+// const count = async () => {
 
-    try {
-        const res = await axios.get('/cart_count', {}).then((e) => {
-            document.getElementById('cart-count').innerHTML = e.data.items
-        })
-    } catch (error) {
-        console.log(error)
-    }
-    try {
-        const res = await axios.get('/wish_count', {}).then((e) => {
-            document.getElementById('wish-count').innerHTML = e.data.item
-        })
-    } catch (error) {
-        console.log(error)
-    }
-}
+//     try {
+//         const res = await axios.get('/cart_count', {}).then((e) => {
+//             document.getElementById('cart-count').innerHTML = e.data.items
+//         })
+//     } catch (error) {
+//         console.log(error)
+//     }
+//     try {
+//         const res = await axios.get('/wish_count', {}).then((e) => {
+//             document.getElementById('wish-count').innerHTML = e.data.item
+//         })
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 
-document.addEventListener('DOMContentLoaded', count)
+// document.addEventListener('DOMContentLoaded', count)
 
