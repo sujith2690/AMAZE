@@ -55,25 +55,15 @@ module.exports = {
         console.log(otpcode.otp, '-------otp number');
         console.log(data.mobile, '----------mobile number');
         return new Promise((resolve, reject) => {
-            console.log('hylo');
             client.verify.v2.services(config.serviceId).verificationChecks.create({
                 to: '+91' + data.mobile,
                 code: otpcode.otp
             }).then((verification_check) => {
-
-                console.log(verification_check.status);
-                console.log("---------verification success in Twilio chechout");
+                console.log(verification_check.status,"---------verification success in Twilio chechout");
                 resolve(verification_check.status)
             }).catch((err) => {
                 console.log("error", err);
             })
-
         });
-
-
     }
-
-
-
-
 }

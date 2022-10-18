@@ -97,7 +97,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form action="/updateuser" method="post" id="addressForm">
+                <form action="/updateuser" method="post" id="profile">
 
                   <div class="form-row" style="margin-bottom: 20px;">
                     <div class="col">
@@ -112,25 +112,20 @@
                   <div class="form-row" style="margin-bottom: 20px;">
                     <div class="col">
                       <input type="text" style="text-transform:lowercase;" class="form-control" placeholder="Email"
-                        value="{{userDetails.email}}" name="email">
-                      {{#if exist}}
-                      <p style="color: red; ">user already exist</p>
-                      {{/if}}
+                        value="{{userDetails.email}}" name="email" required>
                     </div>
                   </div>
                   <div class="form-row" style="margin-bottom: 20px;">
                     <div class="col">
-                      <input pattern=".{10,10}" type="text" class="form-control" placeholder="Mobile Number"
+                      <input  type="number" class="form-control" placeholder="Mobile Number"
                         name="mobile" required title="plese enter 10 number" value="{{userDetails.mobile}}">
                     </div>
                   </div>
 
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
                     <button type="submit" class="btn btn-primary">Save changes</button>
                   </div>
-
                 </form>
               </div>
 
@@ -205,10 +200,11 @@
 {{!-- ................ajax................ --}}
 
 
+
 <script>
   $().ready(function () {
 
-    $("#signupForm").validate({
+    $("#profile").validate({
       // in 'rules' user have to specify all the constraints for respective fields
       rules: {
 
@@ -216,79 +212,29 @@
           required: true,
           minlength: 2 //for length of lastname
         },
-        password: {
-          required: true,
-          minlength: 3
-        },
-        confirm_password: {
-          required: true,
-          minlength: 3,
-          equalTo: "#password" //for checking both passwords are same or not
-        },
-        email: {
-          required: true,
-          email: true
-        },
+       
         mobile: {
           required: true,
           number: true,
           minlength: 10,
           maxlength: 10,
-
         }
-
       },
       // in 'messages' user have to specify message as per rules
       messages: {
-
-        username: {
-          required: " Please enter a username",
+        name: {
+          required: " Please enter Name",
           minlength: " Your username must consist of at least 2 characters"
         },
-        password: {
-          required: " Please enter a password",
-          minlength: " Your password must be consist of at least 3 characters"
-        },
-        confirm_password: {
-          required: " Please enter a password",
-          minlength: " Your password must be consist of at least 3 characters",
-          equalTo: " Please enter the same password as above"
-        },
+       
         mobile: {
           required: " Please enter a phone number",
-          minlength: " phone number must be of 10 numbers",
-          maxlength: " phone number must be of 10 numbers",
-        }
-
+          minlength: " phone required 10 numbers",
+          maxlength: " phone required 10 numbers",
+        },
       }
     });
   });
 
 </script>
 
-
-{{!--
-<script>
-  function updateuser(id) {
-    const name = document.getElementById('name').value
-    const lastname = document.getElementById('lastname').value
-    const email = document.getElementById('email').value
-    const mobile = document.getElementById('mobile').value
-    $.ajax({
-      url: '/updateuser',
-      method: 'post',
-      data: {
-        name: name,
-        lastname: lastname,
-        email: email,
-        mobile: mobile
-      },
-      success: (response) => {
-        console.log(response)
-        swal('Profile Updated', "", 'success')
-      }, error(error)=>{
-      swal('something went wrong',"","danger")
-    }
-    })
-  }
-</script> --}}

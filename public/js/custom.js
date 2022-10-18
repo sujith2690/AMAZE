@@ -13,7 +13,7 @@ async function addtoWishlist(proId) {
         });
         console.log("------Add to  wishlist")
         setTimeout(() => {
-            
+
             $("#wish").load(location.href + " #wish>*", "")
         }, 60)
     })
@@ -96,7 +96,7 @@ function remove(ev, id) {
                 }, 1000)
 
             } else {
-                
+
                 swal({
                     title: "Your file is safe!",
                     buttons: false,
@@ -108,24 +108,27 @@ function remove(ev, id) {
         });
 }
 
+function removeaddress(ev, id) {
+    ev.preventDefault();
+    var url = ev.currentTarget.getAttribute('href')
+    swal({
+        title: "Are you sure?",
+        text: "You Want to remove this Address!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
 
-// const count = async () => {
+        if (willDelete) {
 
-//     try {
-//         const res = await axios.get('/cart_count', {}).then((e) => {
-//             document.getElementById('cart-count').innerHTML = e.data.items
-//         })
-//     } catch (error) {
-//         console.log(error)
-//     }
-//     try {
-//         const res = await axios.get('/wish_count', {}).then((e) => {
-//             document.getElementById('wish-count').innerHTML = e.data.item
-//         })
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+            swal("Poof! Your item has been removed!", {
+                icon: "success",
+            });
+            window.location.href = url;
+        } else {
+            swal("Your file is safe!");
+        }
+    });
+}
 
-// document.addEventListener('DOMContentLoaded', count)
 

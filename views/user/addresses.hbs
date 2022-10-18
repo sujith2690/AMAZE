@@ -252,6 +252,7 @@
 
 
 <script>
+
   $().ready(function () {
 
     $("#AddressForm").validate({
@@ -297,28 +298,4 @@
 
 </script>
 
-<script>
-  function removeaddress(ev, id) {
-    ev.preventDefault();
-    var url = ev.currentTarget.getAttribute('href')
-    swal({
-      title: "Are you sure?",
-      text: "You Want to remove this Address!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    })
-      .then((willDelete) => {
-
-        if (willDelete) {
-
-          swal("Poof! Your item has been removed!", {
-            icon: "success",
-          });
-          window.location.href = url;
-        } else {
-          swal("Your file is safe!");
-        }
-      });
-  }
-</script>
+  

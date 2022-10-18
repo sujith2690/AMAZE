@@ -55,16 +55,18 @@ module.exports = {
     });
   },
   updatecoupen: (couponid, coupondata) => {
+    
     console.log(couponid, coupondata, "twoos");
+    console.log( coupondata.Couponname, "--------------Couponname");
     return new Promise(async (resolve, reject) => {
 
       couponModal
         .findByIdAndUpdate(couponid, {
-          Couponname: coupondata.Couponname,
-          Couponcode: coupondata.Couponcode,
+          Couponname: coupondata.Coupenname,
+          Couponcode: coupondata.CoupenCode,
           Discountprice: coupondata.Discountprice,
           Discountpricelimit: coupondata.Discountpricelimit,
-          Couponlimit: coupondata.Couponlimit,
+          Couponlimit: coupondata.Coupenlimit,
           Date: new Date(),
         })
         .then((response) => {
@@ -84,23 +86,19 @@ module.exports = {
 
 
   applyCoupon: (userID, coupendata) => {
-    //console.log(userID, "------------------useriddddddd");
-    //console.log(coupendata.code, "------------coupendataaaaaaa");
+
     return new Promise(async (resolve, reject) => {
       try {
         let response = {};
-        // let number = coupendata.code
-        //console.log(number,'-----number');
-
         let coupen = await couponModal.findOne({
           Couponcode: coupendata.code,
         })
-       // console.log(coupen, "----------coupenood");
+        console.log(coupen, "----------coupenood");
         cart_controller.totalAmount(userID).then(async (totalamount) => {
-         // console.log(totalamount.grandtotalprice, "---------totalamount");
+          // console.log(totalamount.grandtotalprice, "---------totalamount");
           let total = totalamount.grandtotalprice
           if (coupen) {
-           // console.log(total, '--------kkkkkkkkkk')
+            // console.log(total, '--------kkkkkkkkkk')
             response.coupen = coupen;
             let coupenuser = await couponModal.findOne({
               Couponcode: coupendata.code,
@@ -108,24 +106,24 @@ module.exports = {
             });
             if (coupen.Discountpricelimit <= total) {
               // console.log(coupen, '--------ttttttttttttt')
-             // console.log(coupen.Discountpricelimit, "coupenlimit");
-             // let coupon_limit = coupen.Discountpricelimit
+              // console.log(coupen.Discountpricelimit, "coupenlimit");
+              // let coupon_limit = coupen.Discountpricelimit
               let coupon_discountprice = coupen.Discountprice
               response.Status = true;
-             // console.log(coupenuser, '----------coupenuser')
+              // console.log(coupenuser, '----------coupenuser')
               if (coupenuser) {
-               // console.log(coupenuser, '----------coupenuser')
+                // console.log(coupenuser, '----------coupenuser')
                 response.Status = false;
                 resolve(response);
               } else {
                 let Coupon_grandtotal = total - coupon_discountprice
                 //console.log(Coupon_grandtotal, '----------Coupon_grandtotal')
-                
+
                 response.Coupon_Discount = coupon_discountprice;
                 response.total = total
                 response.Coupon_grandtotal = Coupon_grandtotal
 
-               // console.log(response, '-----------final response')
+                // console.log(response, '-----------final response')
                 resolve(response);
               }
               // else {
@@ -142,7 +140,7 @@ module.exports = {
             } else {
               response.Status = false;
               resolve(response);
-             // console.log(response, "hearelast response");
+              // console.log(response, "hearelast response");
             }
           } else {
             response.Status = false;
@@ -175,7 +173,7 @@ module.exports = {
 
         console.log(coupens, '----------5555555555555');
 
-        console.log(coupens._id,'---------coupon id');
+        console.log(coupens._id, '---------coupon id');
         //if (coupens) {
         await couponModal
           .findByIdAndUpdate(coupens._id, { $push: { userId: userid } })
@@ -183,7 +181,7 @@ module.exports = {
             console.log(response, "-----------ttttttttttt  ")
             resolve(response);
           });
-       
+
       } catch (error) {
         reject(error);
       }
