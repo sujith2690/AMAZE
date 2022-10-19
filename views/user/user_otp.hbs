@@ -1,6 +1,19 @@
-
+<style>
+    #partitioned {
+        padding-left: 10px;
+        letter-spacing: 37px;
+        border: 0;
+        background-image: linear-gradient(to left, black 70%, rgba(255, 255, 255, 0) 0%);
+        background-position: bottom;
+        background-size: 50px 1px;
+        background-repeat: repeat-x;
+        background-position-x: 35px;
+        width: 330px;
+        outline: none;
+    }
+</style>
 <section class="vh-100 bg-image"
-    style="background-image: url('/loginpageimage/cool-guy-good-mood-posing-blue-background-jumping.jpg'); background-size: cover;backgrou	nd-repeat: no-repeat;height: 100vh;">
+    style="background-image: url('/loginpageimage/blue-background-jumping.webp'); background-size: cover;backgrou	nd-repeat: no-repeat;height: 100vh;">
     <div class="mask d-flex align-items-center h-100 gradient-custom-3">
         <div class="container h-100">
             <div class="row d-flex justify-content-end align-items-center h-100">
@@ -8,14 +21,17 @@
                     <div class="card mt-4" style="border-radius: 15px; background: transparent;">
                         <div class="card-body" style="background: transparent;">
                             <form action="/otpverify" method="post">
-                                <h3 class="fw-normal mb-3 pb-3 text-white" style="letter-spacing: 1px; text-align:center">Enter OTP
+                                <h3 class="fw-normal mb-3 pb-3 text-white"
+                                    style="letter-spacing: 1px; text-align:center">Enter OTP
                                 </h3>
                                 <div class="form-row" style="margin-bottom: 20px;">
                                     <div class="col">
-                                        <input type="text" class="form-control" placeholder="OTP Number" name="otp"
-                                            required>
+                                        <h4 style="text-align: center;">
+                                            <input id="partitioned" type="number" placeholder="OTP NO" maxlength="6" name="otp"
+                                                required />
+                                        </h4>
                                         {{#if otperror}}
-                                        <p style="color: red;">Wrong OTP</p>
+                                        <h5 style="color: red; text-align: center;">Wrong OTP</h5>
                                         {{/if}}
                                     </div>
                                 </div>
@@ -24,12 +40,10 @@
                             <button type="submit" class="btn btn-outline-warning btn-lg btn-block">Verify </button>
                         </div>
                         </form>
-
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
     </div>
 </section>

@@ -113,8 +113,7 @@ router.post('/login', (req, res, next) => {
     if (response.status) {
       req.session.loggedin = true
       req.session.user = response.user
-      // let user = req.session.user
-      // console.log(user,'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj');
+     
       console.log("login success");
       res.redirect('/')
     }
@@ -136,7 +135,6 @@ router.get('/signup', function (req, res, next) {
   req.session.exist = false
 })
 router.post('/otp', async (req, res) => {
-
   try {
     const user = await usermodel.findOne({ email: req.body.email })
     console.log(user, '----------------user');
@@ -156,7 +154,11 @@ router.post('/otp', async (req, res) => {
     console.log(error);
   }
 })
-
+router.get('/user_otp',(req,res)=>{
+  let otperror = req.session.otperror
+  console.log(otperror,'------------otp error')
+  res.render('user/user_otp',{otperror})
+})
 //..........................O T P      V E R I F Y.............//
 router.post('/otpverify', async (req, res, next) => {
   console.log(req.session.data, '-----------user details');
@@ -181,8 +183,8 @@ router.post('/otpverify', async (req, res, next) => {
         next(error)
       }
     } else {
-      let otperror = response
-      res.render('user/user_otp',{otperror})
+      req.session.otperror = true
+      res.redirect('/user_otp')
     }
   })
 })

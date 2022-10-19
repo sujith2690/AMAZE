@@ -4,6 +4,7 @@
 <div class="container-fluid">
 
   <h4>Order Management</h4>
+  <a class="btn btn-outline-primary mb-2" onclick="exportCsv()">Sales Report</a>
 
   <div class="card mb-4">
 
@@ -39,7 +40,7 @@
               {{#each this.orderitems}}<li> {{this.productId.productname}} {{/each}}
               </li>
             </td>
-            <td class="text-center" > {{#each this.orderitems}}{{this.quantity}} <br> {{/each}}</td>
+            <td class="text-center"> {{#each this.orderitems}}{{this.quantity}} <br> {{/each}}</td>
             {{#if this.grandtotalamount}}
             <td class="text-center" style="text-align: center; vertical-align: middle;">{{this.grandtotalamount}}</td>
             {{else}}
@@ -49,8 +50,8 @@
               {{#if (eq this.paymentMethod 'COD')}} <span class="badge badge-danger">{{this.paymentMethod}}</span>
               {{else}} <span class="badge badge-success">{{this.paymentMethod}}</span>
               {{/if}}
-              </td>
-            <td class="text-center"style="vertical-align: middle;">{{this.productStatus}}</td>
+            </td>
+            <td class="text-center" style="vertical-align: middle;">{{this.productStatus}}</td>
             <td class="text-center update" id="status" style="vertical-align: middle;">{{this.deliveryStatus}}</td>
             <td class="text-center update" style="vertical-align: middle;">
 
@@ -76,13 +77,13 @@
               {{/if}}
 
             </td>
-            <td  style="color: red; text-align: center; vertical-align: middle;">
+            <td style="color: red; text-align: center; vertical-align: middle;">
 
               {{#if (eq this.productStatus "Cancelled")}}
               <i class="fa-sharp fa-solid fa-xmark"></i> Cancelled
               {{/if}}
               {{#if (or (eq this.productStatus "Pending") (eq this.productStatus 'Shipped')) }}
-              <a class="btn btn-outline-danger"  onclick="cancelorder('{{this._id}}')">Cancel</a>
+              <a class="btn btn-outline-danger" onclick="cancelorder('{{this._id}}')">Cancel</a>
               {{/if}}
 
             <td class="text-center">{{format this.createdAt}}</td>
@@ -102,10 +103,10 @@
     axios({
       method: 'post',
       url: '/admin/ShipOrder/' + id
-      
+
     }).then((response) => {
 
-    location.reload()
+      location.reload()
 
     }).catch((response) => {
       console.log(response, "catch error at shipped axios.")
@@ -119,7 +120,7 @@
       url: '/admin/Delivered/' + id
 
     }).then((response) => {
-    location.reload()
+      location.reload()
     }).catch((response) => {
       console.log(response, "catch error at delivered axios.")
     })
@@ -137,4 +138,21 @@
     })
   }
 
+</script>
+
+<script>
+  let dataTable = new simpleDatatables.DataTable("#datatablesSimple")
+
+  let date = new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  })
+  function exportCsv() {
+    dataTable.export({
+      type: "csv",
+      skipColumn: [0, 13, 14],
+      filename: "order_report" + " " + date
+    });
+  }
 </script>

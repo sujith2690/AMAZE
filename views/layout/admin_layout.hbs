@@ -14,6 +14,9 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+  <script src="/assets/js/datatables-simple-demo.js"></script>
+
   <link href="/assets/css/styles-admin.css" rel="stylesheet" />
   <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 
@@ -41,8 +44,8 @@
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" style="cursor: pointer;" role="button" data-bs-toggle="dropdown"
-          aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" style="cursor: pointer;" role="button"
+          data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
           <li><a class="dropdown-item" style="cursor: pointer;">Settings</a></li>
           <li><a class="dropdown-item" style="cursor: pointer;">Activity Log</a></li>
@@ -60,7 +63,7 @@
         <div class="sb-sidenav-menu">
           <div class="nav">
             {{!-- <div class="sb-sidenav-menu-heading"></div> --}}
-            <a class="nav-link mt-4"  href="/admin/admin_home">
+            <a class="nav-link mt-4" href="/admin/admin_home">
               <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>
               </div>
               Dashboard
@@ -76,7 +79,7 @@
               <div class="sb-nav-link-icon"><i class="fas fa-gift"></i></div>
               Coupons
             </a>
-            
+
             <a class="nav-link" href="/admin/edit_users">
               <div class="sb-nav-link-icon"><i class="fa-regular fa-user"></i></div>
               Users
@@ -93,7 +96,7 @@
               <div class="sb-nav-link-icon"><i class="fa-solid fa-person-biking"></i></div>
               Orders
             </a>
-             <a class="nav-link" href="/admin/charts">
+            <a class="nav-link" href="/admin/charts">
               <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
               Charts
             </a>
@@ -125,7 +128,7 @@
       </footer>
     </div>
   </div>
-{{!-- bootrap cdn files --}}
+  {{!-- bootrap cdn files --}}
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -144,8 +147,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
   <script src="/assets/demo/chart-area-demo.js"></script>
   <script src="/assets/demo/chart-bar-demo.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-  <script src="/assets/js/datatables-simple-demo.js"></script>
 
 
   {{!-- ..........sweet alert............. --}}
