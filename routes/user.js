@@ -552,7 +552,6 @@ router.post('/verifyPayment', VerifyLogin, (req, res, next) => {
 router.get('/order_confirm/:_id', VerifyLogin, (req, res) => {
   let orderid = req.params._id
   let user = req.session.user
-
   //console.log(req.params._id,'44444444444444444')
   order_controller.getTrack(orderid).then((orderItemsDetails) => {
     //  console.log(response.paymentMethod, '-----final response.......')
@@ -564,7 +563,6 @@ router.get('/order_confirm/:_id', VerifyLogin, (req, res) => {
       res.render('user/order_confirm', { user: true, loggedin: true, orderItemsDetails, address, orderitems, userDetails, count })
     })
   })
-
 })
 
 

@@ -117,12 +117,17 @@ function removeaddress(ev, id) {
         icon: "warning",
         buttons: true,
         dangerMode: true,
-    }).then((willDelete) => {
+    })
+    .then((willDelete) => {
 
         if (willDelete) {
 
-            swal("Poof! Your item has been removed!", {
+            swal({
+                title: "Address Has been removed...!",
                 icon: "success",
+                buttons: false,
+                timer: 1000,
+                width: '25em'
             });
             window.location.href = url;
         } else {
