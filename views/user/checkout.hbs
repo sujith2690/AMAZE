@@ -384,8 +384,20 @@
 
                   </div>
                 </div>
-                <div class="col h5">Total PRICE</div>
-                <div class="col text-right"><span id="coupontotal"> ₹ {{products.grandtotalprice}}</span></div>
+                 <div class="row">
+                  <div class="col h6">PRICE</div>
+                  <div class="col text-right">₹ {{products.grandtotalprice}}</div>
+                </div>
+                <div class="row">
+                  <div class="col h6">Coupon Discount</div>
+                  <div class="col text-right">₹ <span id="coupondicount" style="color: red;"> 0</span> </div>
+                </div>
+                <div class="row">
+                  <div class="col h6">Total PRICE</div>
+
+                  <div class="col text-right"><span id="coupontotal"> ₹ {{products.grandtotalprice}}</span></div>
+                </div>
+
               </div>
 
               <button class="btn btn-outline-info w-100" type="submit" onclick="payment()">PROCEED</button>
@@ -431,10 +443,12 @@
           timer: 1000,
         })
         //setTimeout(() => {
-       //   location.reload()
-       // }, 600)
+        //   location.reload()
+        // }, 600)
 
       } else {
+        let coupondicount = document.getElementById('coupondicount')
+        coupondicount.innerHTML = e.data.Coupon_Discount
         let grandTotal = document.getElementById('coupontotal')
         console.log(grandTotal, "jjjjj")
         grandTotal.innerHTML = e.data.Coupon_grandtotal

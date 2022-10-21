@@ -277,6 +277,7 @@ router.post('/cancelorder/:_id', (req, res) => {
     res.json(response)
   })
 })
+
 router.get('/view_Order/:_id', VerifyLogin, (req, res) => {
   order_controller.getTrack(req.params._id).then((orderItemsDetails) => {
     console.log(orderItemsDetails._id, '------------44444444444')

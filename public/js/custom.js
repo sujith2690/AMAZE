@@ -36,8 +36,7 @@ async function addtoCart(proId) {
 }
 
 
-//...................      ///// ....C A R T....     ....... ///....................//
-
+//..............................C A R T.......................   //  
 async function decQty(proId) {
     console.log(proId, '------------cart axios l')
     await axios.post(`/decQty/${proId}`, {}).then((e) => {
@@ -118,22 +117,59 @@ function removeaddress(ev, id) {
         buttons: true,
         dangerMode: true,
     })
-    .then((willDelete) => {
+        .then((willDelete) => {
+
+            if (willDelete) {
+
+                swal({
+                    title: "Address Has been removed...!",
+                    icon: "success",
+                    buttons: false,
+                    timer: 1000,
+                    width: '25em'
+                });
+                window.location.href = url;
+            } else {
+                swal("Your file is safe!");
+            }
+        });
+}
+
+
+function cancelorder(ev, id) {
+    ev.preventDefault();
+    var url = ev.currentTarget.getAttribute('href')
+    swal({
+        title: "Are you sure?",
+        text: "You Want to remove this item!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
 
         if (willDelete) {
 
             swal({
-                title: "Address Has been removed...!",
+                title: "Order Has been Cancelled...!",
                 icon: "success",
                 buttons: false,
                 timer: 1000,
                 width: '25em'
             });
-            window.location.href = url;
+            axios({
+                method: 'post',
+                url: '/cancelorder/' + id
+
+            }).then((response) => {
+                location.reload()
+            }).catch((response) => {
+                console.log(response, "catch error at delivered axios.")
+            })
         } else {
-            swal("Your file is safe!");
         }
     });
+
+
 }
 
 

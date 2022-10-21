@@ -1,97 +1,74 @@
-<section id="contact" class="contact" >
+<section id="contact" class="contact">
   <div class="container">
 
     <div class="section-title">
       <h2>Orders</h2>
-     
+
     </div>
 
     <div class="card mb-4">
+      <table class="table table-hover">
+        <thead class="text-white" style="background-color: #013741;">
+          <tr>
+            <th scope="col">No:</th>
+            <th scope="col">Order Date</th>
+            <th scope="col">Products</th>
+            <th scope="col">Quantity & Price</th>
+            <th scope="col">Total Price</th>
+            {{!-- <th>Delivery</th> --}}
+            <th scope="col">Payment through</th>
+            <th scope="col">Delivery Status</th>
+            <th scope="col">View</th>
+            <th scope="col">Cancel Order</th>
+          </tr>
+        </thead>
+        <tbody class="table-body">
+          {{#each orders}}
+          <tr class="cell-1">
+
+            <td scope="row">{{count @index}}</td>
+            <td class="text-center">{{format this.createdAt}}</td>
+            <td class="text-center"> {{#each this.orderitems}}{{this.productId.productname}} <br><br> {{/each}} </td>
+            <td class="text-center">{{#each this.orderitems}}{{this.quantity}} X {{this.productId.offerprice}} <br>
+              <br> {{/each}}
+            </td>
+            <td class="text-center">{{#each this.orderitems}}₹ {{subTotal this.productId.offerprice
+              this.quantity}}<br><br>
+              {{/each}} </td>
+            <td class="text-center">{{this.paymentMethod}}</td>
+            <td class="text-center"><span>{{this.productStatus}}</span></td>
 
 
-      <div class="card-body">
-        <table id="datatablesSimple">
-          <thead class="thead-dark">
-            <tr>
-              {{!-- <th>No.</th> --}}
-              <th scope="col">No:</th>
-              <th scope="col">Order Date</th>
-              <th scope="col">Products</th>
-              <th scope="col">Quantity & Price</th>
-              <th scope="col">Total Price</th>
-              {{!-- <th>Delivery</th> --}}
-              <th scope="col">Payment through</th>
-              <th scope="col">Delivery Status</th>
-              <th scope="col">View</th>
-              <th scope="col">Cancel Order</th>
-            </tr>
-          </thead>
+            <td class="text-center">
+              <p> <a href="/view_Order/{{this._id}}">
+                  <ion-icon name="search-outline" style="font-size: 20px;"></ion-icon>
+                </a></p>
+            </td>
 
-          <tbody class="table-body">
-            {{#each orders}}
-            <tr class="cell-1">
-
-              <td scope="row">{{count @index}}</td>
-              <td class="text-center">{{format this.createdAt}}</td>
-              <td class="text-center"> {{#each this.orderitems}}{{this.productId.productname}} <br><br> {{/each}} </td>
-              <td class="text-center">{{#each this.orderitems}}{{this.quantity}} X {{this.productId.offerprice}} <br>
-                <br> {{/each}}
-              </td>
-              <td class="text-center">{{#each this.orderitems}}₹ {{subTotal this.productId.offerprice
-                this.quantity}}<br><br>
-                {{/each}} </td>
-              <td class="text-center">{{this.paymentMethod}}</td>
-              <td class="text-center"><span>{{this.productStatus}}</span></td>
+            {{#if (or (eq this.productStatus "Pending")(eq this.productStatus "Shipped"))}}
 
 
-              <td class="text-center">
-                <p> <a href="/view_Order/{{this._id}}">
-                    <ion-icon name="search-outline" style="font-size: 20px;"></ion-icon>
-                  </a></p>
-              </td>
+            <td class="text-center"><a class="btn btn-outline-danger"
+                onclick="cancelorder(event,'{{this._id}}')">Cancel</a>
+            </td>
 
-              {{#if (or (eq this.productStatus "Pending")(eq this.productStatus "Shipped"))}}
+            {{/if}}
 
-             
-              <td class="text-center"><a class="btn btn-outline-danger" onclick="cancelorder('{{this._id}}')">Cancel</a>
-              </td>
+            {{#if (eq this.productStatus "Delivered")}}
+            <td class="text-center" style="color:green ;">Delivered</td>
+            {{/if}}
+            {{#if (eq this.productStatus "Cancelled")}}
+            <td class="text-center" style="color:red ;">Cancelled</td>
+            {{/if}}
+          </tr>
 
-              {{/if}}
+        </tbody>
 
-              {{#if (eq this.productStatus "Delivered")}}
-              <td class="text-center" style="color:green ;">Delivered</td>
-              {{/if}}
-              {{#if (eq this.productStatus "Cancelled")}}
-              <td class="text-center" style="color:red ;">Cancelled</td>
-              {{/if}}
-            </tr>
+        {{/each}}
+      </table>
 
-          </tbody>
+     
 
-          {{/each}}
-        </table>
-
-
-        <script>
-          $(document).ready(function () {
-
-            $('.toggle-btn').click(function () {
-              $(this).toggleClass('active').siblings().removeClass('active');
-            });
-
-          });
-        </script>
-       
-
-
-
-
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-
-      </div>
     </div>
   </div>
 
@@ -103,16 +80,9 @@
 <div class="container mt-5">
 
 </div>
-<script>
-  function cancelorder(id) {
-    axios({
-      method: 'post',
-      url: '/admin/cancelorder/' + id
 
-    }).then((response) => {
-      location.reload()
-    }).catch((response) => {
-      console.log(response, "catch error at delivered axios.")
-    })
-  }
+
+<script>
+
+
 </script>
