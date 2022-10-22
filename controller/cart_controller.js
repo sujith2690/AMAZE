@@ -163,9 +163,9 @@ module.exports = {
     })
   },
   totalAmount: (userId, productID) => {
-    var totalprice = 0
-    var qty = 0
-    var grandtotalprice = 0
+    let totalprice = 0
+    let qty = 0
+    let grandtotalprice = 0
 
 
     return new Promise(async (resolve, reject) => {

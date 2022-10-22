@@ -375,7 +375,7 @@
               <div class="row" style="border-top: 1px solid white; padding: 2vh 0; color: white">
                 <div class="col-auto">
                   <div class="input-group mb-2">
-                    <input type="text" class="form-control" name="Coupencode" id="Coupencode" placeholder="Coupon ">
+                    <input type="text" class="form-control" name="couponcode" id="couponcode" placeholder="Coupon ">
                     <div class="input-group-prepend">
                       <div class="input-group-btn">
                         <a class="btn btn-outline-warning" onclick="applyCoupon()">Apply</a>
@@ -421,7 +421,7 @@
 <script>
   function applyCoupon() {
     console.log('ffffffffff')
-    let value = document.getElementById('Coupencode').value
+    let value = document.getElementById('couponcode').value
     console.log('val ', value)
     axios({
       method: 'post',

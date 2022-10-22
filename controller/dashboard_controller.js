@@ -28,8 +28,8 @@ module.exports = {
 
           console.log(orders, '--------------totalRevenue 00000000000000')
 
-          var today = new Date()
-          var newdate = today.toISOString()
+          let today = new Date()
+          let newdate = today.toISOString()
           newdate = newdate.slice(0, 10);
           await order_model.find({ date: newdate }).populate('orderitems').lean().then(async (today) => {
 
@@ -83,26 +83,26 @@ module.exports = {
     return new Promise(async (resovle, reject) => {
       try {
 
-        var dateArray = []
+        let dateArray = []
         for (let i = 0; i < 5; i++) {
-          var d = new Date();
+          let d = new Date();
           d.setDate(d.getDate() - i)
-          var newdate = d.toISOString()
+          let newdate = d.toISOString()
           // console.log(new Date());
           newdate = newdate.slice(0, 10)
           dateArray[i] = newdate
         }
         console.log(dateArray, newdate, 'jkjhkjhkjhkjh');
-        // var Date = new Date()    
+        
 
-        var dateSale = []
-        // var date = new Date() 
+        let dateSale = []
+
         for (i = 0; i < 5; i++) {
           // dateSale[i] = await ordermodel.find({newdate:dateArray[i]}).lean().count()
           dateSale[i] = await order_model.find({ date: dateArray[i] }).lean().count()
           console.log(dateSale[i], "dateeeeeee");
         }
-        var status = {
+        let status = {
           dateSale: dateSale,
           dateArray: dateArray
         }
@@ -171,10 +171,10 @@ module.exports = {
       try {
         let wholeincome = await ordermodel.find().lean()
         console.log(wholeincome, "wholeincome");
-        var a = 0;
-        var b = 0;
-        var totalamount = 0;
-        var grandtotal = 0;
+        let a = 0;
+        let b = 0;
+        let totalamount = 0;
+        let grandtotal = 0;
         for (let i = 0; i < wholeincome.length; i++) {
           if (wholeincome[i].grandtotal == null) {
             for (let x = a; x <= a; x++) {
@@ -203,10 +203,10 @@ module.exports = {
       try {
         let wholeincome = await ordermodel.find().lean()
         console.log(wholeincome, "wholeincome");
-        var a = 0;
-        var b = 0;
-        var totalamount = 0;
-        var grandtotal = 0;
+        let a = 0;
+        let b = 0;
+        let totalamount = 0;
+        let grandtotal = 0;
         console.log(wholeincome.length, 'is the wolelenght');
         for (let i = 0; i < wholeincome.length; i++) {
           if (wholeincome[i].grandtotal == null) {
@@ -239,10 +239,10 @@ module.exports = {
         console.log(day, 'is today');
         let wholeincome = await ordermodel.find({ newdate: day }).lean()
         console.log(wholeincome, "wholeincome");
-        var a = 0;
-        var b = 0;
-        var totalamount = 0;
-        var grandtotal = 0;
+        let a = 0;
+        let b = 0;
+        let totalamount = 0;
+        let grandtotal = 0;
         console.log(wholeincome.length, 'is the length of the array');
         for (let i = 0; i < wholeincome.length; i++) {
           if (wholeincome[i].grandtotal == null) {

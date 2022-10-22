@@ -4,9 +4,9 @@ const cart_controller = require('../controller/cart_controller')
 
 module.exports = {
 
-  addcoupen: (coupondata) => {
+  addcoupon: (coupondata) => {
     return new Promise(async (resolve, reject) => {
-      console.log(coupondata, "data of coupen");
+      console.log(coupondata, "data of coupon");
       let coupon = new couponModal({
         Couponname: coupondata.Couponname,
         Couponcode: coupondata.Couponcode,
@@ -21,7 +21,7 @@ module.exports = {
     });
   },
 
-  getcoupen: () => {
+  getcoupon: () => {
     return new Promise(async (resolve, reject) => {
       let response = {};
 
@@ -40,7 +40,7 @@ module.exports = {
         } else {
           response.couponempty = true
           response = coupon;
-          console.log(response, '----------no  coupen ')
+          console.log(response, '----------no  coupon ')
           resolve(response)
 
         }
@@ -54,7 +54,7 @@ module.exports = {
       resolve(response);
     });
   },
-  updatecoupen: (couponid, coupondata) => {
+  updatecoupon: (couponid, coupondata) => {
     
     console.log(couponid, coupondata, "twoos");
     console.log( coupondata.Couponname, "--------------Couponname");
@@ -62,11 +62,11 @@ module.exports = {
 
       couponModal
         .findByIdAndUpdate(couponid, {
-          Couponname: coupondata.Coupenname,
-          Couponcode: coupondata.CoupenCode,
+          Couponname: coupondata.couponname,
+          Couponcode: coupondata.couponCode,
           Discountprice: coupondata.Discountprice,
           Discountpricelimit: coupondata.Discountpricelimit,
-          Couponlimit: coupondata.Coupenlimit,
+          Couponlimit: coupondata.couponlimit,
           Date: new Date(),
         })
         .then((response) => {
@@ -76,43 +76,43 @@ module.exports = {
     });
   },
 
-  deletecoupen: (coupenid) => {
+  deletecoupon: (couponid) => {
     return new Promise(async (resolve, reject) => {
-      couponModal.findByIdAndDelete({ _id: coupenid }).then((response) => {
+      couponModal.findByIdAndDelete({ _id: couponid }).then((response) => {
         resolve(response);
       });
     });
   },
 
 
-  applyCoupon: (userID, coupendata) => {
+  applyCoupon: (userID, coupondata) => {
 
     return new Promise(async (resolve, reject) => {
       try {
         let response = {};
-        let coupen = await couponModal.findOne({
-          Couponcode: coupendata.code,
+        let coupon = await couponModal.findOne({
+          Couponcode: coupondata.code,
         })
-        console.log(coupen, "----------coupenood");
+        console.log(coupon, "----------couponood");
         cart_controller.totalAmount(userID).then(async (totalamount) => {
           // console.log(totalamount.grandtotalprice, "---------totalamount");
           let total = totalamount.grandtotalprice
-          if (coupen) {
+          if (coupon) {
             // console.log(total, '--------kkkkkkkkkk')
-            response.coupen = coupen;
-            let coupenuser = await couponModal.findOne({
-              Couponcode: coupendata.code,
+            response.coupon = coupon;
+            let couponuser = await couponModal.findOne({
+              Couponcode: coupondata.code,
               userId: { $in: [userID] },
             });
-            if (coupen.Discountpricelimit <= total) {
-              // console.log(coupen, '--------ttttttttttttt')
-              // console.log(coupen.Discountpricelimit, "coupenlimit");
-              // let coupon_limit = coupen.Discountpricelimit
-              let coupon_discountprice = coupen.Discountprice
+            if (coupon.Discountpricelimit <= total) {
+              // console.log(coupon, '--------ttttttttttttt')
+              // console.log(coupon.Discountpricelimit, "couponlimit");
+              // let coupon_limit = coupon.Discountpricelimit
+              let coupon_discountprice = coupon.Discountprice
               response.Status = true;
-              // console.log(coupenuser, '----------coupenuser')
-              if (coupenuser) {
-                // console.log(coupenuser, '----------coupenuser')
+              // console.log(couponuser, '----------couponuser')
+              if (couponuser) {
+                // console.log(couponuser, '----------couponuser')
                 response.Status = false;
                 resolve(response);
               } else {
@@ -128,7 +128,7 @@ module.exports = {
               }
               // else {
               // response.Status = true;
-              // response.coupen = response;
+              // response.coupon = response;
               // Helpers.addproductdetails(userID).then((cartprod) => {
               //   Helpers.getTotaldiscount(userID).then((totaldiscount) => {
               //     console.log(cartprod.cart, "productiddddd");
@@ -153,30 +153,30 @@ module.exports = {
     });
   },
 
-  // getcoupenvalue: (coupenid) => {
+  // getcouponvalue: (couponid) => {
   //   return new Promise(async (resolve, reject) => {
   //     let response = {};
-  //     let coupen = await couponModal.findOne({ _id: coupenid }).lean();
+  //     let coupon = await couponModal.findOne({ _id: couponid }).lean();
 
-  //     response = coupen;
+  //     response = coupon;
   //     resolve(response);
   //   });
   // },
 
-  coupenUser: (userid, coupen) => {
-    console.log(userid, coupen, "coupeniddddd");
+  couponUser: (userid, coupon) => {
+    console.log(userid, coupon, "couponiddddd");
     return new Promise(async (resolve, reject) => {
       try {
-        let coupens = await couponModal.findOne({
-          Couponcode: coupen.code,
+        let coupons = await couponModal.findOne({
+          Couponcode: coupon.code,
         });
 
-        console.log(coupens, '----------5555555555555');
+        console.log(coupons, '----------5555555555555');
 
-        console.log(coupens._id, '---------coupon id');
-        //if (coupens) {
+        console.log(coupons._id, '---------coupon id');
+        //if (coupons) {
         await couponModal
-          .findByIdAndUpdate(coupens._id, { $push: { userId: userid } })
+          .findByIdAndUpdate(coupons._id, { $push: { userId: userid } })
           .then((response) => {
             console.log(response, "-----------ttttttttttt  ")
             resolve(response);

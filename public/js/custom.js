@@ -70,7 +70,7 @@ async function incQty(proId) {
 
 function remove(ev, id) {
     ev.preventDefault();
-    var url = ev.currentTarget.getAttribute('href')
+    let url = ev.currentTarget.getAttribute('href')
     swal({
         title: "Are you sure?",
         text: "You Want to remove this item!",
@@ -109,7 +109,7 @@ function remove(ev, id) {
 
 function removeaddress(ev, id) {
     ev.preventDefault();
-    var url = ev.currentTarget.getAttribute('href')
+    let url = ev.currentTarget.getAttribute('href')
     swal({
         title: "Are you sure?",
         text: "You Want to remove this Address!",
@@ -138,7 +138,7 @@ function removeaddress(ev, id) {
 
 function cancelorder(ev, id) {
     ev.preventDefault();
-    var url = ev.currentTarget.getAttribute('href')
+    let url = ev.currentTarget.getAttribute('href')
     swal({
         title: "Are you sure?",
         text: "You Want to remove this item!",

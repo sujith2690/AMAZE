@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 const usermodel = require('../model/user_model')
 const user_controller = require('../controller/user_controller');
@@ -194,7 +194,7 @@ router.post('/otpverify', async (req, res, next) => {
 router.get('/profile', VerifyLogin, (req, res) => {
 
   user = req.session.user._id
-  coupon_controller.getcoupen().then((coupons) => {
+  coupon_controller.getcoupon().then((coupons) => {
     address_controller.getAddress(user).then((address) => {
       console.log(userDetails, 'hhhhhhhhhhhhhhhhhhhhhh');
       res.render('user/profile', { user: true, loggedin: true, userDetails, coupons, count, address })
@@ -256,7 +256,7 @@ router.post('/update_address/:id', (req, res) => {
   }
 })
 router.get('/coupons',VerifyLogin,(req,res)=>{
-  coupon_controller.getcoupen().then((coupons)=>{
+  coupon_controller.getcoupon().then((coupons)=>{
 console.log(coupons,'-------------coupons');
     res.render('user/coupons',{ user: true, loggedin: true,count,coupons, userDetails })
   })
@@ -368,6 +368,9 @@ router.get('/cart', VerifyLogin, (req, res) => {
     cart_controller.totalAmount(user._id, productdetails).then((products) => {
       if (!emptyCart) {
         var DatasCart = productdetails.cart.cartdata
+        console.log(DatasCart,'-------------------5')
+      res.render('user/cart', { user: true, loggedin: true, userDetails, DatasCart, products, count })
+
       }
       //console.log(products, 'llllllllllllllllllllllll');
       res.render('user/cart', { user: true, loggedin: true, userDetails, emptyCart, DatasCart, products, count })
@@ -464,14 +467,14 @@ router.get('/checkout', VerifyLogin, (req, res) => {
 router.post('/applyCoupon', VerifyLogin, (req, res) => {
   console.log(req.body, '----------post')
   let userid = req.session.user._id
-  console.log(req.body, '-------------applyCoupen')
+  console.log(req.body, '-------------applycoupon')
   coupon_controller.applyCoupon(userid, req.body).then((e) => {
     console.log(e, '-------------cou[pn')
 
     if (e.Status == true) {
       req.session.coupon = e
       console.log(req.session.coupon, '-------------77777777')
-      coupon_controller.coupenUser(userid, req.body).then((useradded) => {
+      coupon_controller.couponUser(userid, req.body).then((useradded) => {
         console.log(useradded, '-------------77777777')
         res.json(e)
       })
@@ -508,7 +511,7 @@ router.post('/payment', VerifyLogin, (req, res) => {
 
           req.body.coupon = coupon
           console.log(coupon, '------------coupon exist')
-          // coupon_controller.coupenUser(userid, coupon).then((response) => {
+          // coupon_controller.couponUser(userid, coupon).then((response) => {
           //console.log(response, '------------5555555555')
           req.session.coupon = null;
 
@@ -579,7 +582,7 @@ router.get('/wishlist', VerifyLogin, (req, res) => {
   wishlist_controller.getProductDetails(userid).then((productdetails) => {
     let emptyWishlist = productdetails.wishlistempty
     if (!emptyWishlist) {
-      var wish = productdetails.wish.wishlistData
+      let wish = productdetails.wish.wishlistData
     }
     res.render('user/wishlist', { user: true, loggedin: true, userDetails, wish, emptyWishlist, count })
     console.log(wish, 'wishlistooooooooooooooout');

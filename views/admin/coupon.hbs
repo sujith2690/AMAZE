@@ -5,13 +5,13 @@
 <div class="container">
 
 
-  {{!-- <button class="btn btn-success" data-toggle="modal" data-target="#coupen">Add Coupen</button> --}}
+  {{!-- <button class="btn btn-success" data-toggle="modal" data-target="#coupon">Add coupon</button> --}}
 
 
 
   <!-- Button trigger modal -->
   <a type="button" class="btn btn-outline-primary mb-2" style="align-items: end;" data-bs-target="#exampleModalss" data-bs-toggle="modal">
-    Add Coupen
+    Add coupon
   </a>
 
   <!-- Modal -->
@@ -20,13 +20,13 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Coupen</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Add coupon</h5>
           <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form action="/admin/addcoupen" method="post">
+          <form action="/admin/addcoupon" method="post">
             <!-- Name input -->
             <div class="row">
               <div class="col">
@@ -141,11 +141,11 @@
                         <div class="row">
                           <div class="col">
                             <input type="text" class="form-control" value="{{this.Couponname}}"
-                              placeholder="Coupen name" name="Coupenname">
+                              placeholder="coupon name" name="couponname">
                           </div>
                           <div class="col">
                             <input type="text" class="form-control" value="{{this.Couponcode}}"
-                              placeholder="Coupen code" name="CoupenCode">
+                              placeholder="coupon code" name="couponCode">
                           </div>
                         </div>
                         <div class="row mt-2">
@@ -162,7 +162,7 @@
                         <div class="row mt-2">
                           <div class="col">
                             <input type="number" class="form-control" value="{{this.Couponlimit}}"
-                              placeholder="Coupon Limit" name="Coupenlimit">
+                              placeholder="Coupon Limit" name="couponlimit">
                           </div>
                           <div class="col">
                             <input type="text" disabled class="form-control" placeholder="Date" name="date">

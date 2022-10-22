@@ -1,7 +1,7 @@
 const razorpay = require('razorpay');
 const { response } = require('../app');
 const orderModel = require('../model/order_model')
-var instance = new razorpay({
+let instance = new razorpay({
   key_id: process.env.key_id,
   key_secret: process.env.key_secret,
 });
@@ -9,7 +9,7 @@ var instance = new razorpay({
 module.exports = {
   generateRazorpay: (orderid, totalAmount) => {
     return new Promise((resolve, reject) => {
-      var options = {
+      let options = {
         amount: totalAmount*100, //amount in the samllwst currency unit
         currency: "INR",
         receipt: orderid, 

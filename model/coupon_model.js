@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const CoupenSchema = new mongoose.Schema({
+const couponSchema = new mongoose.Schema({
   userId: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
@@ -26,6 +26,6 @@ const CoupenSchema = new mongoose.Schema({
 
 },{ timestamps: true }
 )
-const coupenmodel = mongoose.model('coupon', CoupenSchema)
+const couponmodel = mongoose.model('coupon', couponSchema)
 
-module.exports = coupenmodel
+module.exports = couponmodel

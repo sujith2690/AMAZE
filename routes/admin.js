@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 const User = require("../model/user_model")
 const Admin = require('../model/admin_model')
@@ -110,7 +110,7 @@ router.get('/edit_users', VerifyAdmin, (req, res) => {
 
 
   //...............user block..........//
-  router.get('/block-user/:id', (req, res) => {
+  router.get('/block-user/:id',VerifyAdmin, (req, res) => {
     let id = req.params.id
     console.log("working");
     admin_controller.block_user(id).then((response) => {
@@ -120,7 +120,7 @@ router.get('/edit_users', VerifyAdmin, (req, res) => {
   })
   //.............active user.............//
 
-  router.get('/active-user/:id', (req, res) => {
+  router.get('/active-user/:id',VerifyAdmin, (req, res) => {
     let id = req.params.id
     console.log("active-working");
     admin_controller.active_user(id).then((response) => {
@@ -137,7 +137,7 @@ router.get('/edit_users', VerifyAdmin, (req, res) => {
 //.........................Admin user signup.................//
 
 
-router.get('/add_user', function (req, res, next) {
+router.get('/add_user',VerifyAdmin, function (req, res, next) {
   res.render('admin/add_user')
 
 })
@@ -159,7 +159,7 @@ router.post('/add_user', async (req, res) => {
 
 //..................Add admin..................//
 
-router.get('/add_admin', function (req, res, next) {
+router.get('/add_admin',VerifyAdmin, function (req, res, next) {
   res.render('admin/add_admin')
 
 })
@@ -184,7 +184,7 @@ router.post('/add_admin', async (req, res) => {
 //.....................Category Management.....................//
 
 
-router.get('/view_category', (req, res) => {
+router.get('/view_category',VerifyAdmin, (req, res) => {
   if (req.session.admin_login) {
     category_Controller.getcategory().then((response) => {
       res.render('admin/view_category', { layout: "admin_layout", response, admin: true })
@@ -194,7 +194,7 @@ router.get('/view_category', (req, res) => {
   }
 })
 
-router.get('/add_category', (req, res) => {
+router.get('/add_category',VerifyAdmin, (req, res) => {
 
   res.render('admin/add_category', { layout: 'admin_layout', admin: true, })
 })
@@ -221,7 +221,7 @@ router.post('/addcategory', async (req, res) => {
 })
 //..............Delete category...................//
 
-router.get('/delete-category/:_id', (req, res) => {
+router.get('/delete-category/:_id',VerifyAdmin, (req, res) => {
   const categoryid = req.params._id;
 
   category_Controller.deletecategory(categoryid).then((data) => {
@@ -231,7 +231,7 @@ router.get('/delete-category/:_id', (req, res) => {
 
 //..............update category...................//
 
-router.get('/update-category/:_id', (req, res) => {
+router.get('/update-category/:_id',VerifyAdmin, (req, res) => {
 
   const categoryid = req.params._id;
   category_Controller.getcategorydata(categoryid).then((categorydata) => {
@@ -255,7 +255,7 @@ router.post('/update-category/:_id', (req, res) => {
 //   res.render('admin/product_management', { layout: "admin_layout", admin: true })
 // })
 
-router.get('/product-management', (req, res) => {
+router.get('/product-management',VerifyAdmin, (req, res) => {
 
   if (req.session.admin_login) {
     //  console.log("raaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
@@ -274,7 +274,7 @@ router.get('/product-management', (req, res) => {
 
 
 //...............delete product................//
-router.get('/delete-product/:_id', (req, res) => {
+router.get('/delete-product/:_id',VerifyAdmin, (req, res) => {
   let productID = req.params._id
   product_controller.deleteproducts(productID).then((response) => {
     res.redirect('/admin/product-management')
@@ -283,7 +283,7 @@ router.get('/delete-product/:_id', (req, res) => {
 })
 
 //..............edit product...................//
-router.get('/update-product/:_id', (req, res) => {
+router.get('/update-product/:_id',VerifyAdmin, (req, res) => {
   let productID = req.params._id
   product_controller.getPoductvalue(productID).then((productdata) => {
     category_Controller.getcategory(productID).then((category) => {
@@ -297,7 +297,7 @@ router.get('/update-product/:_id', (req, res) => {
 })
 
 
-router.post('/updateproduct/:_id', upload.array("image", 5), (req, res) => {
+router.post('/updateproduct/:_id',VerifyAdmin, upload.array("image", 5), (req, res) => {
   const images = req.files
   let array = [];
   array = images.map((value) => value.filename)
@@ -318,7 +318,7 @@ router.post('/updateproduct/:_id', upload.array("image", 5), (req, res) => {
 
 //........image adding....................//
 
-router.post('/addproducts', upload.array("image", 5), (req, res) => {
+router.post('/addproducts',VerifyAdmin, upload.array("image", 5), (req, res) => {
   const images = req.files
   array = images.map((value) => value.filename)
   req.body.image = array
@@ -334,7 +334,7 @@ router.post('/addproducts', upload.array("image", 5), (req, res) => {
 
 //.......get......Add Product.................//
 
-router.get('/add-products', (req, res) => {
+router.get('/add-products',VerifyAdmin, (req, res) => {
 
   const productexist = req.session.productexist
   req.session.productexist = null
@@ -345,7 +345,7 @@ router.get('/add-products', (req, res) => {
 })
 
 //...........Post....Add Product.................//
-router.post('/addproducts', upload.array("image", 5), (req, res) => {
+router.post('/addproducts',VerifyAdmin, upload.array("image", 5), (req, res) => {
   console.log(req.body.categoryname, 'fghfghjghjgjh');
   const images = req.files
   let array = [];
@@ -369,7 +369,7 @@ router.post('/addproducts', upload.array("image", 5), (req, res) => {
   })
 })
 
-// .all......................Bsnner.......................................
+// ..............................B A N N E R .......................................
 
 
 router.get('/banner', VerifyAdmin, (req, res) => {
@@ -395,17 +395,7 @@ router.post('/addbanner', upload1.array('image', 3), (req, res) => {
   })
 })
 
-// router.post('/editbanner/:id', VerifyAdmin, upload1.array('image', 3), (req, res) => {
-//   const images = req.files
 
-//   console.log(req.body, '--------------bannnn')
-//   let array = images.map((value) => value.filename)
-//   req.body.images = array
-//   let bannerid = req.params.id
-//   banner_controller.updatebanner(bannerid, req.body).then((response) => {
-//     res.redirect('/admin/banner')
-//   })
-// })
 router.post('/editbanner/:id', VerifyAdmin, upload1.array('image', 1), (req, res) => {
   const images = req.files
   let array = images.map((value) => value.filename)
@@ -433,29 +423,29 @@ router.get('/deletebanner/:_id', VerifyAdmin, (req, res) => {
 // .all..............................Coupon............................................
 
 router.get('/coupon', VerifyAdmin, (req, res) => {
-  coupon_controller.getcoupen().then((coupons) => {
+  coupon_controller.getcoupon().then((coupons) => {
 
     res.render('admin/coupon', { layout: "admin_layout", admin: true, coupons })
   })
 
 })
-router.post('/addcoupen', VerifyAdmin, (req, res) => {
+router.post('/addcoupon', VerifyAdmin, (req, res) => {
 
-  coupon_controller.addcoupen(req.body).then((coupons) => {
+  coupon_controller.addcoupon(req.body).then((coupons) => {
     res.redirect('/admin/coupon')
   })
 })
 router.post('/editCoupon/:_id', VerifyAdmin, (req, res) => {
   let couponid = req.params._id
   console.log(req.body, '....555.......newcoupon')
-  coupon_controller.updatecoupen(couponid, req.body).then((newcoupon) => {
+  coupon_controller.updatecoupon(couponid, req.body).then((newcoupon) => {
     console.log(newcoupon, '...........newcoupon')
     res.redirect('/admin/coupon')
   })
 })
 router.get('/removeCoupon/:_id', VerifyAdmin, (req, res) => {
   let couponid = req.params._id
-  coupon_controller.deletecoupen(couponid).then((coupon) => {
+  coupon_controller.deletecoupon(couponid).then((coupon) => {
     res.redirect('/admin/coupon')
   })
 })
@@ -481,7 +471,7 @@ router.post('/Delivered/:_id', VerifyAdmin, (req, res) => {
     res.json(response)
   })
 })
-router.post('/cancelorder/:_id', (req, res) => {
+router.post('/cancelorder/:_id',VerifyAdmin, (req, res) => {
   order_controller.cancelOrder(req.params._id).then((response) => {
     res.json(response)
   })
